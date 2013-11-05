@@ -5,8 +5,18 @@ socket = io.connect('http://localhost:3000');
 
 function appendNewUser (uname){
 	$('.playerlist').append("<p id="+uname+" class='user'><b>"+uname+"</b></p>");
+	bindPlayersClick();
 }
-
+function bindPlayersClick(){
+	$('.user').click(function(){
+		socket.emit('message',{
+			inferSrcUser:true,
+			source: "",
+			message:"test message",
+			target:this.id
+		});
+	});
+}
 function setUsername() {
     myUserName = $('input#username').val();
     socket.emit('adduser', $('input#userName').val(), function(data) { console.log('emit set username', data); });
@@ -34,6 +44,8 @@ $(document).ready(function(){
 			htmlString+= "<p id="+username+" class='user'><b>"+username+"</b></p>";
 		});
 		$('.playerlist').html(htmlString);
+		bindPlayersClick();
+
 	});
 
 	socket.on('error', function(msg) {
@@ -53,6 +65,7 @@ $(document).ready(function(){
 
 	$('#refresh-list-btn').click(function(){
 		socket.emit('getOnlineUsers');
+		bindPlayersClick();
 	});
 
 	socket.on('message',function(data){
