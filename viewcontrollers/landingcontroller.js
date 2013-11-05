@@ -1,9 +1,12 @@
 module.exports.controller = function(app){
 
 	app.get('/',function(req,res){
-
+		//for pages which require login use this
+		//if (!req.username) return res.redirect("/login");
 		res.render('landing/index',{title: "Descramble ME!"});
 	});
+	app.post('/signup',sessionHandler.handleSignup);
+	app.post('/login',sessionHandler.handleLoginRequest);
 
 	app.get('/site/randomwords',function(req,res){
 		var http=require('http');
@@ -39,9 +42,9 @@ module.exports.controller = function(app){
 
 module.exports.socket = function(socket){
 	
-	socket.on('message',function(data){
-		socket.broadcast.emit('message',data);	
-	});
+// 	socket.on('message',function(data){
+// 		socket.broadcast.emit('message',data);	
+// 	});
 
 	
 };
