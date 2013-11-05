@@ -1,4 +1,4 @@
-module.exports.controller = function(app){
+module.exports.controller = function(app,db,sessionHandler){
 
 	app.get('/',function(req,res){
 		//for pages which require login use this
