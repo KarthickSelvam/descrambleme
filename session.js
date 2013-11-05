@@ -11,7 +11,7 @@ function SessionHandler (db) {
 
     this.isLoggedInMiddleware = function(req, res, next) {
         var session_id = req.cookies.session;
-        sessions.getUsername(session_id, function(err, username) {
+        getUsername(session_id, function(err, username) {
             "use strict";
 
             if (!err && username) {
@@ -39,7 +39,7 @@ function SessionHandler (db) {
 
             if (err) {
                 if (err.no_such_user) {
-                    return res.render("login", {username:username, login_error:"No such user"});
+                    return res.render("/landing/index", {username:username, login_error:"No such user"});
                 }
                 else {
                     // Some other kind of error
@@ -47,7 +47,7 @@ function SessionHandler (db) {
                 }
             }
 
-            sessions.startSession(user['_id'], function(err, session_id) {
+            startSession(user['_id'], function(err, session_id) {
                 "use strict";
 
                 if (err) return next(err);
@@ -62,12 +62,12 @@ function SessionHandler (db) {
         "use strict";
 
         var session_id = req.cookies.session;
-        sessions.endSession(session_id, function (err) {
+        endSession(session_id, function (err) {
             "use strict";
 
             // Even if the user wasn't logged in, redirect to home
             res.cookie('session', '');
-            return res.redirect('/');
+            return res.redirect('landing/index');
         });
     }
 
@@ -126,7 +126,7 @@ function SessionHandler (db) {
                     // this was a duplicate
                     if (err.code == '11000') {
                         errors['username_error'] = "Username already in use. Please choose another";
-                        return res.render("/", errors);
+                        return res.render("landing/index", errors);
                     }
                     // this was a different error
                     else {
@@ -134,11 +134,11 @@ function SessionHandler (db) {
                     }
                 }
                 console.log('no errors from addUser, user: '+JSON.stringify(user));
-                sessions.startSession(user['_id'], function(err, session_id) {
+                startSession(user['_id'], function(err, session_id) {
                     "use strict";
 
                     if (err) return next(err);
-
+                    console.log(errors.username_error +" .. "+errors.email_error);
                     res.cookie('session', session_id);
                     return res.redirect('/modeSelect');
                 });
@@ -146,14 +146,14 @@ function SessionHandler (db) {
         }
         else {
             console.log("user did not validate");
-            return res.render("/", errors);
+            return res.render("landing/index", errors);
         }
     }
 
 
     /*from sessions.js*/
 
-    var sessions = db.collection("sessions");
+    var sessionsCollection = db.collection("sessions");
 
     this.startSession = function(username, callback) {
         "use strict";
@@ -165,9 +165,9 @@ function SessionHandler (db) {
 
         // Create session document
         var session = {'username': username, '_id': session_id}
-
+        console.log(session);
         // Insert session document
-        sessions.insert(session, function (err, result) {
+        sessionsCollection.insert(session, function (err, result) {
             "use strict";
             callback(err, session_id);
         });
@@ -176,7 +176,7 @@ function SessionHandler (db) {
     this.endSession = function(session_id, callback) {
         "use strict";
         // Remove session document
-        sessions.remove({ '_id' : session_id }, function (err, numRemoved) {
+        sessionsCollection.remove({ '_id' : session_id }, function (err, numRemoved) {
             "use strict";
             callback(err);
         });
@@ -189,7 +189,7 @@ function SessionHandler (db) {
             return;
         }
 
-        sessions.findOne({ '_id' : session_id }, function(err, session) {
+        sessionsCollection.findOne({ '_id' : session_id }, function(err, session) {
             "use strict";
 
             if (err) return callback(err, null);
