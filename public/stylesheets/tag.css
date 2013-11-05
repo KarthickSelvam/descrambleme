@@ -1,23 +1,22 @@
 	.tags{
-		width:500px;
-		background: #71b5e9 url(/images/bg_tags.gif) repeat-x;
 		height:250px;
+
 	}
 	.tags ul{
 		margin:1em 0;
 		padding:.5em 10px;
 		text-align:center;
-		background:#71b5e9 url(/images/bg_tags.gif) repeat-x;		
+			
 		}
 	.tags li{
 		margin:0;
-		padding:0;
+		padding:20px;
 		list-style:none;
 		display:inline;
 		}
 	.tags li a{
 		text-decoration:none;
-		color:#fff;
+		color:#000;
 		padding:0 2px;	
 		display:inline-block;
 		}

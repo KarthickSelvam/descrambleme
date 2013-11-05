@@ -1,6 +1,7 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url(/images/player_bg.png) no-repeat right top;
+  margin: 0px;
 }
 
 a {
@@ -9,7 +10,7 @@ a {
 .suggestion{
 	top: 50%;
 	position: absolute;
-	width:40%;
+	width:60%;
 }
 .SuggRefresh{
 	text-align:right;
@@ -17,7 +18,45 @@ a {
 .Sidebar{
 	position: absolute;
 	height: 100%;
-	width: 50%;
+	width: 30%;
 	right: 0px;
-	background-color: #000;
+	background:url(/images/Player-side-bg.png) no-repeat;
+}
+.suggSelect{
+	position: absolute;
+	top:20%;
+	border-bottom: 1px #fff;
+	border-top: 1px #fff;
+	margin: 1px;
+	left:50px;
+}
+.SuggRefresh a{ 
+	color: #fff;
+}
+.suggSelect label{
+	color:#fff;
+	font-size: 200%;
+}
+.suggSelect #content{
+	float:right;
+	margin-left: 10px;
+}
+.suggInput{
+	border: 2px solid #0A1B2A;
+	border-radius: 5px;
+	height: 22px;
+	width: 230px;
+	background-color : #0A1B2A; 
+	color: #fff;
+	font-size: 20px;
+	height: 30px;
+	width: 200px;
+	font-style:italic; 
+	padding: 5px 5px 5px 15px;
+	box-shadow: 1px 1px 1px 1px #000;
+}
+.SuggWord h3{
+	margin-left: 50px;
+	color: #fff;
+	font-weight:300; 
 }

@@ -1,14 +1,16 @@
 extends ../layout
-
 block content
 	h1 = title
-	div
-		p Choose a Word To Challenge
+	div.suggSelect
+		label Choose a Word To Challenge :
 		div(id="content")
-			input(type='text', id='searchWord')
+			input.suggInput(type='text', id='searchWord')
 		div(id="displayText")
 	
 	div.suggestion
+		div.SuggWord
+			span
+				h3 Other Suggestions :
 		div.SuggRefresh 
 			span 
 				a(href="javascript:refresh();")[Refresh]
