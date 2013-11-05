@@ -40,13 +40,6 @@ fs.readdirSync(__dirname+'/models').forEach(function (file) {
   }
 });
 
-// dynamically include routes (Controller)
-fs.readdirSync(__dirname+'/viewcontrollers').forEach(function (file) {
-  if(file.substr(-3) == '.js') {
-      route = require(__dirname+'/viewcontrollers/' + file);
-      route.controller(app);
-  }
-});
 
 MongoClient.connect('mongodb://localhost:27017/descrambleme', function(err, db){
 
