@@ -1,3 +1,0 @@
-function enter(){
-	alert('hello');
-}
