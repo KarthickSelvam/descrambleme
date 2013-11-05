@@ -94,3 +94,7 @@ function refresh(){
 function WordSelect(word){
   $("#searchWord").val(word);
 }
+
+function audioToggle(){
+  console.log($('#bgmusic').attribute('muted'));
+}

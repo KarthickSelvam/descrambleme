@@ -1,28 +1,31 @@
 extends ../layout
 block content
-	h1 = title
-	div.suggSelect
-		label Choose a Word To Challenge :
-		div(id="content")
-			input.suggInput(type='text', id='searchWord')
-		div(id="displayText")
-	
-	div.suggestion
-		div.SuggWord
-			span
-				h3 Other Suggestions :
-		div.SuggRefresh 
-			span 
-				a(href="javascript:refresh();")[Refresh]
-		div.tags
-			ul
-				-for(var i=0; i<random.length;i++){
-				-var tagNo=Math.floor((Math.random()*5)+1);
-				li(class="tag#{tagNo}")
-					a(href="javascript:WordSelect('#{random[i].word}')") #{random[i].word}
-				-}
-	div.Sidebar
-		div.playerstats
-			div.playericon
-		div.playerselection
-			div.playerlist
+	script(type='text/javascript', src='/socket.io/socket.io.js')
+	body
+		h1 = title
+		div.suggSelect
+			label Choose a Word To Challenge :
+			div(id="content")
+				input.suggInput(type='text', id='searchWord')
+			div(id="displayText")
+		
+		div.suggestion
+			div.SuggWord
+				span
+					h3 Other Suggestions :
+			div.SuggRefresh 
+				span 
+					a(href="javascript:refresh();")[Refresh]
+			div.tags
+				ul
+					-for(var i=0; i<random.length;i++){
+					-var tagNo=Math.floor((Math.random()*5)+1);
+					li(class="tag#{tagNo}")
+						a(href="javascript:WordSelect('#{random[i].word}')") #{random[i].word}
+					-}
+		div.Sidebar
+			div.playerstats
+				div.playericon
+			div.playerselection
+				div.playerlist
+	script(src="/js/twoPlayer.js")
