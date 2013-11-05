@@ -41,9 +41,9 @@ function getWordDetails(value, res) {
 }
 module.exports.socket = function(socket){
 	
-	socket.on('message',function(data){
-		socket.broadcast.emit('message',data);	
-	});
+	// socket.on('message',function(data){
+	// 	socket.broadcast.emit('message',data);	
+	// });
 
 	
 };
