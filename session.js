@@ -71,7 +71,7 @@ function SessionHandler (db) {
 
             // Even if the user wasn't logged in, redirect to home
             res.cookie('session', '');
-            return res.redirect('landing/index',{title: "Descramble ME!"});
+            return res.redirect('/');
         });
     }
 

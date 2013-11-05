@@ -8,6 +8,8 @@ module.exports.controller = function(app,db,sessionHandler){
 	app.post('/signup',sessionHandler.handleSignup);
 	app.post('/login',sessionHandler.handleLoginRequest);
 
+	app.get('/logout',sessionHandler.displayLogoutPage);
+
 	app.get('/site/randomwords',function(req,res){
 		var http=require('http');
 		var WordNikApiKey="f39b86fc25aa35637620607a6760b9d5445b072c27b33304e";
