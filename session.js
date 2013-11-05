@@ -126,7 +126,8 @@ function SessionHandler (db) {
                     // this was a duplicate
                     if (err.code == '11000') {
                         errors['username_error'] = "Username already in use. Please choose another";
-                        return res.render("landing/index", errors);
+                        console.log(errors.username_error +" .. "+errors.email_error);
+                        return res.render('landing/index',{title: "Descramble ME!",errors:errors});
                     }
                     // this was a different error
                     else {
@@ -146,7 +147,7 @@ function SessionHandler (db) {
         }
         else {
             console.log("user did not validate");
-            return res.render("landing/index", errors);
+            return res.render('landing/index',{title: "Descramble ME!",errors:errors});
         }
     }
 

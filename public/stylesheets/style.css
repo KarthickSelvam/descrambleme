@@ -60,3 +60,18 @@ a {
 	color: #fff;
 	font-weight:300; 
 }
+.loginSelect{
+	font-size:50px;
+}
+.SignUpForm{
+}
+.SignInForm{
+
+}
+.hide{
+	display:none !important;
+}
+
+.show{
+	display:block !important;
+}
