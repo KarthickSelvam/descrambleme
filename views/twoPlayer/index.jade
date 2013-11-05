@@ -2,7 +2,25 @@ extends ../layout
 
 block content
 	h1 = title
-	p Welcome to dickson
-	div(id="content")
-		input(type='text', id='searchWord')
-	div(id="displayText")
+	div
+		p Choose a Word To Challenge
+		div(id="content")
+			input(type='text', id='searchWord')
+		div(id="displayText")
+	
+	div.suggestion
+		div.SuggRefresh 
+			span 
+				a(href="javascript:refresh();")[Refresh]
+		div.tags
+			ul
+				-for(var i=0; i<random.length;i++){
+				-var tagNo=Math.floor((Math.random()*5)+1);
+				li(class="tag#{tagNo}")
+					a(href="javascript:WordSelect('#{random[i].word}')") #{random[i].word}
+				-}
+	div.Sidebar
+		div.playerstats
+			div.playericon
+		div.playerselection
+			div.playerlist

@@ -76,3 +76,21 @@ var descramble = function() {
 $(document).ready(function() {
   descramble.init();
 });
+
+function refresh(){
+                      $.ajax({
+                                url: "/site/randomwords",
+                                cache: false,
+                                beforeSend:function(){
+                                  $('.tags').find('ul').empty();
+                                 
+                                },
+                                success:function(data){
+                                  $('.tags').find('ul').html(data);
+                                }
+                                });
+}
+
+function WordSelect(word){
+  $("#searchWord").val(word);
+}

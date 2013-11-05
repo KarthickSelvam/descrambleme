@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+.suggestion{
+	top: 50%;
+	position: absolute;
+	width:40%;
+}
+.SuggRefresh{
+	text-align:right;
+}
+.Sidebar{
+	position: absolute;
+	height: 100%;
+	width: 50%;
+	right: 0px;
+	background-color: #000;
+}
