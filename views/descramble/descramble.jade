@@ -3,6 +3,7 @@ extends ../layout
 block scripts
 	link(rel='stylesheet', href='/stylesheets/descramblestyle.css')
 	script(src="http://code.jquery.com/jquery-1.9.1.js")
+	script(type='text/javascript', src='/socket.io/socket.io.js')
 	script(src="/js/countdown.js")
 	script(src="/js/Scramble.js")
 	script(type='text/javascript')
@@ -83,6 +84,7 @@ block scripts
 		});
 block content
 	div.playerinfo
+		input(type='hidden',id="username-hidden",value='#{user._id}')
 		p.LevelInfo L0
 		a.UserPhoto
 		p.LevelPoints 15000

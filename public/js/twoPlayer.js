@@ -67,14 +67,11 @@ $(document).ready(function(){
 		bindPlayersClick();
 
 	});
-	function enc(str) {
-	    var encoded = "";
-	    for (i=0; i<str.length;i++) {
-	        var a = str.charCodeAt(i);
-	        var b = a ^ 123;    // bitwise XOR with any number, e.g. 123
-	        encoded = encoded+String.fromCharCode(b);
-	    }
-	    return encoded;
+	function encrypt(text){
+	  var cipher = crypto.createCipher('aes-256-cbc','d6F3Efeq')
+	  var crypted = cipher.update(text,'utf8','hex')
+	  crypted += cipher.final('hex');
+	  return crypted;
 	}
 	socket.on('message',function(data){
 		if(data.target== myUserName){
@@ -85,8 +82,20 @@ $(document).ready(function(){
 					//assuming accepted
 					var accept = confirm(data.source+" has challenged you. Do you accept?")
 					if(accept){
-						var encrypted = enc(data.message);
-						window.location.href = "/descramble?word="+encrypted;	
+						$.ajax({
+							url:'/encryptWord',
+							type: "POST",
+							data:{word:data.message},
+							success:function(receivedData){
+								window.location.href = "/descramble?word="+receivedData;
+							},
+							error:function(err){
+								console.log('error in getting encrypted word');
+							}
+
+						})
+						// var encrypted = encrypt(data.message);
+						// window.location.href = "/descramble?word="+encrypted;	
 					}
 					break;
 				case "used_hint":
