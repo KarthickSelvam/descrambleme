@@ -1,6 +1,6 @@
 var socket;
 var myUserName;
-socket = io.connect('http://localhost:3000');
+socket = io.connect("http://" + location.host);
 
 
 function appendNewUser (uname){
