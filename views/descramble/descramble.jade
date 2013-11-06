@@ -32,7 +32,8 @@ block scripts
 		var clickCount = -1;
 		function countdownComplete()
 		{
-			alert(" TimeOut");
+			alert(" Challenge Lost. Click Ok to Learn the Word !");
+			document.location = "/description?word="+originalWord;
 		}
 		function createElements(str) {	
 		
@@ -71,9 +72,13 @@ block scripts
 		clickCount++;
 		var clickedLetter = $(this).find('div').html();
 		if(originalWord[clickCount] == clickedLetter){
-		$('#userAnswer').find('#blank'+clickCount+' h1').html(clickedLetter);
-		if(clickCount+1==wordLength)
-		alert('Complete');
+		
+				$('#userAnswer').find('#blank'+clickCount+' h1').html(clickedLetter);
+				if(clickCount+1==wordLength)
+					{
+						alert('Congrats ! You have Passed the Challenge . Click ok! ');
+						document.location = "/description?word="+originalWord;
+					}
 		}
 		else
 		{
@@ -81,7 +86,39 @@ block scripts
 		audioElement.play();
 		}
 		});
+		
+		var globalResult;
+
+		$.ajax({url:'/descriptionJson?word='+originalWord,dataType:'json',success:function(result){
+		globalResult=result;
+		$("#defni").append(result.Definition);  
+		var urls=result.Images.split(',');
+		//audio file
+		var audio=document.createElement('audio');
+		$(audio).attr('src','http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text='+globalResult.KeyWord).attr('controls','controls')
+		$("#audioSpan").append(audio);
+
+		for(i=0;i<1;i++)
+		{ var images=document.createElement('img');
+		$(images).addClass('hintImage').attr('src', urls[i])   
+		$("#imageSpan").append(images);
+		} 
+		}});
+
+		$('#audioHint').click(function() {
+		$('#audiospan').toggle('slow')  
+		}); 
+		$('#imageHint').on('click',this,function(){
+			
+			$('#hint').find('#imageSpan').removeClass('hide');
 		});
+		$('#audioHint').on('click',this,function(){
+			
+			$('#hint').find('#audioSpan').removeClass('hide');
+		});
+		
+		});
+		
 block content
 	div.playerinfo
 		input(type='hidden',id="username-hidden",value='#{user._id}')
@@ -92,4 +129,16 @@ block content
 	#container
 		#bubble	
 	#userAnswer
+	div.Sidebar
+		div.playerselection
+			div.head Definition:
+			div.def#defni
+	
+		div.playerselection
+			div.head Hints:
+				#hint					
+					#imageHint.iHint View hint image
+					#imageSpan.hide
+					#audioHint.aHint Hear the word
+					#audioSpan.hide
 		

@@ -191,9 +191,20 @@ p.LevelPoints{
 	position: absolute;
 	top: 10px;
 	left: 10px;
+	background: url('/images/log-out.png');
+	z-index: 120;
 }
 .playerinfo a{
 	background: url('/images/placeholder.png');
 }
-
+#defni{
+	color:#efefef;
+	padding-left:25px;
+}
+#imageSpan img{
+width:60%;
+}
+#imageHint,#audioHint{
+font-size:15px;
+margin-top:10px;
 }

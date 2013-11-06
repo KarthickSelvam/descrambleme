@@ -241,7 +241,7 @@ function getSynonyms(value,res,imagecollection,obj,phraseObj,letter)
                                 
                                 var collection = {'KeyWord':value,'Speech':speech,'Audio':Audio,'Definition':Definition,'Usage':Usage,'Phrase':Phrase,'Synonyms':Synonyms,'Antonyms':Antonyms,'Anagrams':letter,'Images':image}
                                 
-                                res.send({data:collection})                                
+                                res.send(collection)                                
                                 
                         });
                 });
