@@ -56,12 +56,12 @@ function UsersDAO(db) {
 
             if (user) {
                     callback(null, user);
-            // }
-            // else {
-            //     var no_such_user_error = new Error("User: " + user + " does not exist");
-            //     // Set an extra field so we can distinguish this from a db error
-            //     no_such_user_error.no_such_user = true;
-            //     callback(no_such_user_error, null);
+            }
+            else {
+                var no_such_user_error = new Error("User: " + user + " does not exist");
+                // Set an extra field so we can distinguish this from a db error
+                no_such_user_error.no_such_user = true;
+                callback(no_such_user_error, null);
             }
         }
 
