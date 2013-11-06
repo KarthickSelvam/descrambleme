@@ -1,6 +1,9 @@
 extends ../layout
 
-block content
+block scripts
+	link(rel='stylesheet', href='/stylesheets/descramblestyle.css')
+	script(src="http://code.jquery.com/jquery-1.9.1.js")
+	script(src="/js/countdown.js")
 	script(type='text/javascript')
 		String.prototype.shuffle = function () {
 		var a = this.split(""),
@@ -30,6 +33,7 @@ block content
 			alert(" TimeOut");
 		}
 		function createElements(str) {	
+		
 			for(i=0;i<str.length;i++)
 			{	
 			var classType=['floating','floatingr','scaling'];		
@@ -54,6 +58,7 @@ block content
 
 		}
 		$(document).ready(function(){
+		
 		var audioElement = document.createElement('audio');
 		audioElement.setAttribute('src', '/audio/Minion_What.mp3');		
 		
@@ -75,9 +80,13 @@ block content
 		}
 		});
 		});
-	
+block content
+	div.playerinfo
+		p.LevelInfo L0
+		a.UserPhoto
+		p.LevelPoints 15000
+		a(href="/logout") logout
 	#container
 		#bubble	
-			
 	#userAnswer
 		
