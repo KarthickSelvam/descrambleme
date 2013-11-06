@@ -9,11 +9,17 @@ block content
 			p.LevelPoints #{user.points}
 			a(href="/logout") logout
 	div.backButton
-			a(href="/logout") [back]
-	div
-		p UserName : #{user._id}
-		p Email : #{user.email}
-		p Points : #{user.points}
-		p Level Number : #{user.level.number}
-		p Level Name : #{user.level.name}
-		p Level Description : #{user.level.description}
+			a(href="/logout") [back]	
+	div.Container
+		div.heading
+				span.
+					SELECT GAME MODE
+		div.first
+			a(href="/challenge")
+				img(src='/images/single.png')
+		div.second
+			a(href="/challenge")
+				img(src='/images/double.png')
+		div.third
+			a(href="/challenge")	
+				img(src='/images/multi.png')
