@@ -3,7 +3,7 @@ module.exports.controller = function(app,db,sessionHandler){
 	app.get('/',function(req,res){
 		//for pages which require login use this
 		//if (!req.username) return res.redirect("/login");
-		res.render('landing/index',{title: "Descramble ME!",errors:{"username_error":"","email_error":""}});
+		res.render('landing/index',{title: "Descramble ME!",errors:{"username_error":"","email_error":""},users:""});
 	});
 	app.post('/signup',sessionHandler.handleSignup);
 	app.post('/login',sessionHandler.handleLoginRequest);

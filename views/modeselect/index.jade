@@ -1,11 +1,13 @@
 extends ../layout
-
+block scripts
+	link(rel='stylesheet', href='/stylesheets/modeselect.css')
 block content
-	body
-		div
-			p UserName : #{user._id}
-			p Email : #{user.email}
-			p Points : #{user.points}
-			p Level Number : #{user.level.number}
-			p Level Name : #{user.level.name}
-			p Level Description : #{user.level.description}
+	div.backButton
+			a(href="/logout") [back]
+	div
+		p UserName : #{user._id}
+		p Email : #{user.email}
+		p Points : #{user.points}
+		p Level Number : #{user.level.number}
+		p Level Name : #{user.level.name}
+		p Level Description : #{user.level.description}
