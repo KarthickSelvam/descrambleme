@@ -60,6 +60,7 @@ module.exports.socket = function(socket,allSockets){
 	      console.log('to particular client: '+(users[msg.target]));
 	      allSockets.socket(users[msg.target]).emit('message',{
 	      		"source": srcUser,
+	      		"type":msg.type,
 	           	"message": msg.message,
 	           	"target": msg.target});
 	    	}
