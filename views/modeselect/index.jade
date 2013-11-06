@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+	body
+		div
+			p UserName : #{user._id}
+			p Email : #{user.email}
+			p Points : #{user.points}
+			p Level Number : #{user.level.number}
+			p Level Name : #{user.level.name}
+			p Level Description : #{user.level.description}

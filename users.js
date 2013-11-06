@@ -22,8 +22,12 @@ function UsersDAO(db) {
 
         // Create user document
         var user = {'_id': username, 'email': email};
-        user['points']=0;
-        user['level']=0;
+        user['points']=500;
+        user['level']={
+            number: 0,
+            name: "Easy",
+            description: ""
+        }
 
         // Add email if set
         // if (email != "") {

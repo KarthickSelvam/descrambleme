@@ -1,9 +1,18 @@
-module.exports.controller = function(app){
+module.exports.controller = function(app,db,sessionHandler){
 
 	app.get('/challenge',function(req,res){
-		RandomWord(function(data){
-			res.render('twoPlayer/index',{title: "This is Two Player Index!",random:data});
-		});
+
+		//for pages which require login use this
+		if (!req.username) return res.redirect("/");
+		users = db.collection('users');
+		users.findOne({_id:req.username},function(err,userDoc){
+            //console.log('found One : '+userDoc);
+            //validateUserDoc(err, userDoc);
+            RandomWord(function(data){
+				res.render('twoPlayer/index',{title: "This is Two Player Index!",random:data,user:userDoc});
+			});
+        });
+		
 		
 		
 	});
