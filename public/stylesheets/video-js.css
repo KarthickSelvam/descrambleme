@@ -630,7 +630,6 @@ positioning, use another containing element. Otherwise you risk messing up
 control positioning and full window mode. **
 */
 .video-js {
-  background-color: #000;
   position: relative;
   padding: 0;
   /* Start with 10px for base font size so other dimensions can be em based and
@@ -713,6 +712,7 @@ body.vjs-full-window {
   padding: 0;
   position: relative;
   width: 100%;
+  margin-top: 50px;
 }
 .vjs-poster img {
   display: block;

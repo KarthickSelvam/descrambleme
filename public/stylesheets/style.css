@@ -1,9 +1,66 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: url(/images/player_bg.png) no-repeat right top;
+  font: 14px "Hobo std", Helvetica, Arial, sans-serif;
+  background: url(/images/player_bg.png) no-repeat;
   margin: 0px;
 }
-
+body.login-page{
+	background: url(/images/orange.jpg) no-repeat 100%;
+}
+a{
+	text-decoration: none;
+}
+#SignInForm,#SignUpForm{
+	width:220px;
+	margin-left: 50px;
+}
+#SignInForm a,#SignUpForm a{
+	float:right;
+	display: block;
+	color:#fff !important;
+	font-size:20px;
+}
+#example_video_1{
+	margin:0 auto;
+}
+.login-page .left{
+	width:50%;
+	float:left;
+	overflow: hidden;
+}
+.login-page .right{
+	padding:0 5% 0 5%;
+	width:40%;
+	float: left;
+	overflow: hidden;
+}
+.login-page input{
+	height:25px;
+	border: none;
+	margin-bottom: 10px;
+	width: 220px;
+	display: block;
+}
+.hide{
+	display: none;
+}
+.loginSelect{
+	margin: 60px 0 20px 50px;
+}
+.volume{
+	position:absolute;
+	right:20px;
+	top:10px;
+}
+.loginSelect a,.white{
+	color: #fff;
+}
+.logo{
+	margin-top: 100px;
+	display: inline-block;
+}
+.logo img{
+	width: 100%;
+}
 a {
   color: #00B7FF;
 }
@@ -61,7 +118,7 @@ a {
 	font-weight:300; 
 }
 .loginSelect{
-	font-size:50px;
+	font-size:30px;
 }
 .SignUpForm{
 }
