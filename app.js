@@ -28,12 +28,21 @@ fs.readdirSync(__dirname+'/models').forEach(function (file) {
   }
 });
 
+var connection_string = '127.0.0.1:27017/descrambleme';
+if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
+  connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
+  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
+  process.env.OPENSHIFT_MONGODB_DB_HOST + ':' +
+  process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
+  process.env.OPENSHIFT_APP_NAME;
+}
 
-MongoClient.connect('mongodb://localhost:27017/descrambleme', function(err, db){
+MongoClient.connect('mongodb://' + connection_string, function(err, db){
 
 	
 	// all environments
-	app.set('port', process.env.PORT || 3000);
+	var port = process.env.OPENSHIFT_NODEJS_PORT || '3000';
+	app.set('port', port);
 	app.set("jsonp callback", true);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
@@ -64,7 +73,7 @@ MongoClient.connect('mongodb://localhost:27017/descrambleme', function(err, db){
 
 	//io.sockets.on('connection',require(__dirname+'/socket',io));
 	require(__dirname+"/socket")(io);
-	server.listen(app.get('port'), function(){
+	server.listen(app.get('port'),process.env.OPENSHIFT_NODEJS_IP||"localhost", function(){
 	  console.log('Express server listening on port ' + app.get('port'));
 	});
 });
