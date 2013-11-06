@@ -13,17 +13,27 @@ block content
 		}
 		return a.join("");
 		}
+		var myCountdown2 = new Countdown({
+									time: 30, 
+									width:200, 
+									height:80, 
+									rangeHi:"minute",	// <- no comma on last item!
+									onComplete	: countdownComplete
+									});
+									
 		var originalWord="#{keyWord}";
-		var scrambledWord = originalWord.shuffle().shuffle();
+		var scrambledWord = originalWord.shuffle()+"aeiou".shuffle();
 		var wordLength = originalWord.length;
 		var clickCount = -1;
-		alert(scrambledWord);
+		function countdownComplete()
+		{
+			alert(" TimeOut");
+		}
 		function createElements(str) {	
 			for(i=0;i<str.length;i++)
 			{	
 			var classType=['floating','floatingr','scaling'];		
-			var rand = Math.floor(Math.random()*2);
-			
+			var rand = Math.floor(Math.random()*2);			
 			
 			var animation=document.createElement('div');
 			$(animation).append(str[i]).addClass(classType[rand])
@@ -32,14 +42,15 @@ block content
 			$(bubbles).addClass('bubble x'+((i+1)%14)+' ball ').append(animation)
 			
 			$("#bubble").append(bubbles);
-			
+			}
+
+			for(j=0;j<wordLength;j++)
+			{
 			var blanks=document.createElement('div');
-			$(blanks).append('<h1></h1>').addClass('blank').attr('id', 'blank'+i)
+			$(blanks).append('<h1></h1>').addClass('blank').attr('id', 'blank'+j)
 			
-			$("#userAnswer").append(blanks);
-			
-			
-			}		
+			$("#userAnswer").append(blanks);			
+			}
 
 		}
 		$(document).ready(function(){
