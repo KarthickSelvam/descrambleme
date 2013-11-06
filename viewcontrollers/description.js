@@ -2,6 +2,9 @@ var http = require("http");
 var wordlist = "";
 var imagecollection = "";
 var keyWord = "";
+var Audio = "";
+var Definition = ""
+var Usage = "";
 var Phrase = "";
 var Anagrams = "";
 var Images = "";
@@ -157,9 +160,7 @@ function getAnagrams(value,res,imagecollection,obj,phraseObj)
 }
 
 function getSynonyms(value,res,imagecollection,obj,phraseObj,letter)
-{	var Definition = "";
-	var Audio = "";
-	var Usage = "";
+{
 	var http = require("http");
 		var options = {
 			host : 'stands4.com',
@@ -235,14 +236,12 @@ function getSynonyms(value,res,imagecollection,obj,phraseObj,letter)
 						Synonyms = synonymObj.results.result[0].synonyms;
 						Antonyms = synonymObj.results.result[0].antonyms;
 						speech = synonymObj.results.result[0].partofspeech;
-						if(Definition == "" || Definition == null)
-							Definition = synonymObj.results.result[0].definition;
 				}
-				//console.log('Problem with request: ' + Definition + synonymObj.results.result[0].definition);
+					console.log('Problem with request: ' + JSON.stringify(synonymObj));
 				
 				var collection = {'KeyWord':value,'Speech':speech,'Audio':Audio,'Definition':Definition,'Usage':Usage,'Phrase':Phrase,'Synonyms':Synonyms,'Antonyms':Antonyms,'Anagrams':letter,'Images':image}
 				
-				res.render('description/description',{data:collection})				
+				res.render('description/description',{data:JSON.stringify(synonymObj)})				
 				
 			});
 		});

@@ -44,7 +44,7 @@ function SessionHandler (db) {
 
             if (err) {
                 if (err.no_such_user) {
-                    return res.render("/landing/index", {title: "Descramble ME!",username:username, errors:{username_error:"No such user"}});
+                    return res.render("landing/index", {title: "Descramble ME!",username:username, errors:{username_error:"No such user"}});
                 }
                 else {
                     // Some other kind of error
