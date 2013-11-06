@@ -1,53 +1,36 @@
 extends ../layout
 
 block content
-	link(rel='stylesheet', href='/stylesheets/descriptionstyle.css')
-	script(type='text/javascript')
-		$(document).ready(function(){
-			var key="#{data.KeyWord}";
-			var keyUrl="http://tts-api.com/tts.mp3?q=chair&return_url=1";
-			alert(keyUrl);
-			$.ajax({
-			url: keyUrl,
-			dataType: 'text',
-			success: function (res) {
-			var headline = $(res.responseText).text();
-			//alert(res);
-			}
-			});
-		});
-	
-	
-	div.outerwrapper
-	div.wrapper		
-		div.word.keyword
-			span #{data.KeyWord}
-			audio(src="http://tts-api.com/tts.mp3?q=chair&return_url=1",controls)
-		div.word	
-			div.defn Definition	: 
-			span #{data.Definition}
-		div.word
-			div.usage Usage	: 
-			span #{data.Usage}
-		div.word
-			div.phrase Phrase	: 
-			span #{data.Phrase}
-		div.word
-			div.Syn Synonyms	: 
-			span #{data.Synonyms}
-		div.word
-			div.Ant Antonyms	: 
-			span #{data.Antonyms}
-		div.word
-			div.Anag Anagrams	: 
-			span #{data.Anagrams}
-		div.word
-			div.Parts Parts of speech	: 
-			span #{data.Speech}
-		div.word
-			div.Images Images	: 
-			span 
-				-var imgSrc=data.Images.split(',');
-				-each url in imgSrc 
-					img(src=url)
-		
+ link(rel='stylesheet', href='/stylesheets/descriptionstyle.css')
+ div.outerwrapper
+ div.wrapper  
+  div.word.keyword
+   span #{data.KeyWord}
+   audio(src="http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text="+"#{data.KeyWord}",controls,type="audio/ogg")
+  div.word 
+   div.defn Definition : 
+   span #{data.Definition}
+  div.word
+   div.usage Usage : 
+   span #{data.Usage}
+  div.word
+   div.phrase Phrase : 
+   span #{data.Phrase}
+  div.word
+   div.Syn Synonyms : 
+   span #{data.Synonyms}
+  div.word
+   div.Ant Antonyms : 
+   span #{data.Antonyms}
+  div.word
+   div.Anag Anagrams : 
+   span #{data.Anagrams}
+  div.word
+   div.Parts Parts of speech : 
+   span #{data.Speech}
+  div.word
+   div.Images Images : 
+   span 
+    -var imgSrc=data.Images.split(',');
+    -each url in imgSrc 
+     img(src=url)
