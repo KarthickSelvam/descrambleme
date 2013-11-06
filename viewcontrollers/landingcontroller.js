@@ -2,7 +2,7 @@ module.exports.controller = function(app,db,sessionHandler){
 
 	app.get('/',function(req,res){
 		//for pages which require login use this
-		//if (!req.username) return res.redirect("/login");
+		if (req.username) return res.redirect("/modeselect");
 		res.render('landing/index',{title: "Descramble ME!",errors:{"username_error":"","email_error":""},user:""});
 	});
 	app.post('/signup',sessionHandler.handleSignup);
