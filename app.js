@@ -13,19 +13,7 @@ var MongoClient = require('mongodb').MongoClient;
 var SessionHandler = require('./session');
 var app = express();
 
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set("jsonp callback", true);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) {
@@ -43,9 +31,24 @@ fs.readdirSync(__dirname+'/models').forEach(function (file) {
 
 MongoClient.connect('mongodb://localhost:27017/descrambleme', function(err, db){
 
+	
+	// all environments
+	app.set('port', process.env.PORT || 3000);
+	app.set("jsonp callback", true);
+	app.set('views', __dirname + '/views');
+	app.set('view engine', 'jade');
+	app.use(express.favicon());
+	app.use(express.logger('dev'));
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
+	app.use(express.cookieParser('your secret here'));
+	app.use(express.session());
+
 	var sessionHandler = new SessionHandler(db);
 	app.use(sessionHandler.isLoggedInMiddleware);
-
+	
+	app.use(app.router);
+	app.use(express.static(path.join(__dirname, 'public')));
 	// dynamically include routes (Controller)
 	fs.readdirSync(__dirname+'/viewcontrollers').forEach(function (file) {
 	  if(file.substr(-3) == '.js') {

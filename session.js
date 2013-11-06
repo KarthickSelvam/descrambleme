@@ -15,9 +15,10 @@ function SessionHandler (db) {
 
     this.isLoggedInMiddleware = function(req, res, next) {
         var session_id = req.cookies.session;
+        console.log('session id passed to middleware: '+session_id);
         sessions.getUsername(session_id, function(err, username) {
             "use strict";
-
+            console.log('in getUserName: '+username);
             if (!err && username) {
                 req.username = username;
             }
@@ -43,7 +44,7 @@ function SessionHandler (db) {
 
             if (err) {
                 if (err.no_such_user) {
-                    return res.render("/landing/index", {title: "Descramble ME!",username:username, login_error:"No such user"});
+                    return res.render("/landing/index", {title: "Descramble ME!",username:username, errors:{username_error:"No such user"}});
                 }
                 else {
                     // Some other kind of error

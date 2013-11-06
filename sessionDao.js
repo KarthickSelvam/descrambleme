@@ -44,12 +44,13 @@ function SessionsDAO(db) {
             callback(Error("Session not set"), null);
             return;
         }
-
+        console.log('from sessionDao, in getUsername');
         sessionsCollection.findOne({ '_id' : session_id }, function(err, session) {
             "use strict";
 
             if (err) return callback(err, null);
-
+            console.log('from sessionDao');
+            console.log(session);
             if (!session) {
                 callback(new Error("Session: " + session + " does not exist"), null);
                 return;
