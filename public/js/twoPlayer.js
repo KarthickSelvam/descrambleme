@@ -67,13 +67,38 @@ $(document).ready(function(){
 		bindPlayersClick();
 
 	});
-
+	function enc(str) {
+	    var encoded = "";
+	    for (i=0; i<str.length;i++) {
+	        var a = str.charCodeAt(i);
+	        var b = a ^ 123;    // bitwise XOR with any number, e.g. 123
+	        encoded = encoded+String.fromCharCode(beer);
+	    }
+	    return encoded;
+	}
 	socket.on('message',function(data){
 		if(data.target== myUserName){
 			//alert(JSON.stringify(data));
 			switch(data.type){
 				case "challenge_request":
 					///show accept decline popup.
+					//assuming accepted
+					var accept = confirm(data.source+" has challenged you. Do you accept?")
+					if(accept){
+						var encrypted = enc(data.message);
+						window.location.href = "/descramble?word="+encrypted;	
+					}
+					break;
+				case "used_hint":
+					//
+					alert(data.source+" has used a hint.");
+					break;
+				case "victory":
+				//victory or defeat
+					alert(data.source+" won your challenge").
+					break;
+				case "defeat":
+					alert(data.source+" lost your challenge. Great!");
 
 			}
 		}

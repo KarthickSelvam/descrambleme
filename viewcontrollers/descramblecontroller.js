@@ -13,8 +13,17 @@ var parseString = require('xml2js').parseString;
 
 
 module.exports.controller = function(app){
+	function enc(str) {
+	    var encoded = "";
+	    for (i=0; i<str.length;i++) {
+	        var a = str.charCodeAt(i);
+	        var b = a ^ 123;    // bitwise XOR with any number, e.g. 123
+	        encoded = encoded+String.fromCharCode(beer);
+	    }
+	    return encoded;
+	}
 	app.get('/descramble',function(req,res){
-		var keyWord = req.query.word;
+		var keyWord = enc(req.query.word);
 	    res.render('descramble/descramble',{keyWord:keyWord});
 	});
 };
