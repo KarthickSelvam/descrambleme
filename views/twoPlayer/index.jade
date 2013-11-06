@@ -2,6 +2,12 @@ extends ../layout
 block scripts
 	script(type='text/javascript', src='/socket.io/socket.io.js')
 block content
+	if user 
+		div.playerinfo
+			p.LevelInfo L#{user.level.number}
+			a.UserPhoto
+			p.LevelPoints #{user.points}
+			a(href="/logout") logout
 	h1 = title
 	input(type='hidden',id='usernamefield',value='#{user._id}')
 	div.suggSelect

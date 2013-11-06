@@ -1,7 +1,6 @@
 doctype 5
 html
-	head	
-		title=title
+	head
 		block scripts
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel='stylesheet', href='/stylesheets/jquery-ui.css')
@@ -10,12 +9,6 @@ html
 		script(src="http://code.jquery.com/ui/1.10.3/jquery-ui.js")
 		script(src="/js/Descramble.js")	
 	body
-		if users 
-			div.playerinfo
-				p.LevelInfo L#{user.level.number}
-				a.UserPhoto
-				p.LevelPoints #{user.points}
-				a(href="/logout") logout
 		block content
 		block foot
 			div.pears

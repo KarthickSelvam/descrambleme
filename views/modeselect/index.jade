@@ -2,6 +2,12 @@ extends ../layout
 block scripts
 	link(rel='stylesheet', href='/stylesheets/modeselect.css')
 block content
+	if user 
+		div.playerinfo
+			p.LevelInfo L#{user.level.number}
+			a.UserPhoto
+			p.LevelPoints #{user.points}
+			a(href="/logout") logout
 	div.backButton
 			a(href="/logout") [back]
 	div
