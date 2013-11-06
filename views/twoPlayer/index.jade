@@ -3,6 +3,7 @@ block content
 	script(type='text/javascript', src='/socket.io/socket.io.js')
 	body
 		h1 = title
+		input(type='hidden',id='usernamefield',value='#{user._id}')
 		div.suggSelect
 			label Choose a Word To Challenge :
 			div(id="content")
@@ -28,4 +29,5 @@ block content
 				div.playericon
 			div.playerselection
 				div.playerlist
+		div.socket-status
 	script(src="/js/twoPlayer.js")

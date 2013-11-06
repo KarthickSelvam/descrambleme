@@ -8,6 +8,7 @@ module.exports.controller = function(app,db,sessionHandler){
 		users.findOne({_id:req.username},function(err,userDoc){
             //console.log('found One : '+userDoc);
             //validateUserDoc(err, userDoc);
+            //console.log('going to render 2 player mode: '+JSON.stringify(userDoc));
             RandomWord(function(data){
 				res.render('twoPlayer/index',{title: "This is Two Player Index!",random:data,user:userDoc});
 			});
