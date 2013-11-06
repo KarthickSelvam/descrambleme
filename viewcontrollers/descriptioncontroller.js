@@ -210,9 +210,9 @@ function getSynonyms(value,res,imagecollection,obj,phraseObj,letter)
 					{
 						for (var l = 0; l < imagecollection.images.length; l++) {
 							if(l == imagecollection.images.length-1)
-							image  = image + imagecollection.images[0].url;
+							image  = image + imagecollection.images[l].url;
 							else
-							image  = image + imagecollection.images[0].url + ","
+							image  = image + imagecollection.images[l].url + ","
 						}
 					}
 				}
