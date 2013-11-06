@@ -156,6 +156,7 @@ a {
 	position:absolute;
 	right:20px;
 	z-index: 9999;
+	margin-top: 10px;
 }
 .suggSelect label{
 	margin-top:5px;
@@ -166,7 +167,33 @@ a {
 	border-bottom: 1px solid #efefef;
 	width:60%;
 }
+.UserPhoto{
+	background: url('/images/placeholder.png');
+	height: 58px;
+	width: 48px;
+	display: inline-block;
+	float: left;
+}
+.playerinfo p{
+	float: left;
+	margin-top: 20px;
+}
+p.LevelInfo{
+	color:#e805ff;
+}
+p.LevelPoints{
+	color: #ff9000;
+}
+.socket-status{
+	display: none;
+}
+.log-out{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
 .playerinfo a{
 	background: url('/images/placeholder.png');
 }
+
 }

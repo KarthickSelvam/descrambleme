@@ -96,5 +96,5 @@ function WordSelect(word){
 }
 
 function audioToggle(){
-  var audioElm = document.getElementById('#bgmusic'); audioElm.muted = !audioElm.muted;
+  var audioElm = document.getElementById('bgmusic'); audioElm.muted = !audioElm.muted;
 }
