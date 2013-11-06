@@ -65,9 +65,9 @@ a {
   color: #00B7FF;
 }
 .suggestion{
-	top: 50%;
+	top: 250px;
 	position: absolute;
-	width:60%;
+	width:65%;
 }
 .SuggRefresh{
 	text-align:right;
@@ -81,7 +81,7 @@ a {
 }
 .suggSelect{
 	position: absolute;
-	top:20%;
+	top:90px;
 	border-bottom: 1px #fff;
 	border-top: 1px #fff;
 	margin: 1px;
@@ -131,4 +131,42 @@ a {
 
 .show{
 	display:block !important;
+}
+.ui-menu .ui-menu-item a{
+	color:#f1f1f1 !important;
+}
+.ui-menu .ui-menu-item:hover a{
+	color: #444 !important;
+}
+.playerlist p{
+	color: #efefef;
+	margin: 0 !important;
+	padding:10px !important;
+	font-size:15px;
+}
+.head{
+	color: #fff;
+	font-weight: bold;
+	padding:10px !important;
+	font-size: 20px;
+	margin-top:80px;
+
+}
+.playerinfo{
+	position:absolute;
+	right:20px;
+	z-index: 9999;
+}
+.suggSelect label{
+	margin-top:5px;
+}
+.suggSelect{
+	padding:20px 0;
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #efefef;
+	width:60%;
+}
+.playerinfo a{
+	background: url('/images/placeholder.png');
+}
 }

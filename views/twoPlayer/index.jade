@@ -10,6 +10,7 @@ block content
 			a(href="/logout") logout
 	h1 = title
 	input(type='hidden',id='usernamefield',value='#{user._id}')
+	
 	div.suggSelect
 		label Choose a Word To Challenge :
 		div(id="content")
@@ -34,6 +35,7 @@ block content
 		div.playerstats
 			div.playericon
 		div.playerselection
+			div.head Online Players:
 			div.playerlist
 	div.socket-status
 block endScripts
