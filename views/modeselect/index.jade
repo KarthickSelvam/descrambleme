@@ -2,12 +2,14 @@ extends ../layout
 block scripts
 	link(rel='stylesheet', href='/stylesheets/modeselect.css')
 block content
+	a.log-out(href="/logout") 
+		span
+			img(src='/images/log-out.png')
 	if user 
 		div.playerinfo
 			p.LevelInfo L#{user.level.number}
 			a.UserPhoto
 			p.LevelPoints #{user.points}
-			a(href="/logout") logout
 	div.backButton
 			a(href="/logout") [back]	
 	div.Container

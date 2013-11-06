@@ -120,12 +120,14 @@ block scripts
 		});
 		
 block content
+	a.log-out(href="/logout") 
+		span
+			img(src='/images/log-out.png')
 	div.playerinfo
 		input(type='hidden',id="username-hidden",value='#{user._id}')
 		p.LevelInfo L0
 		a.UserPhoto
 		p.LevelPoints 15000
-		a(href="/logout") logout
 	#container
 		#bubble	
 	#userAnswer

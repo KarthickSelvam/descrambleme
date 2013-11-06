@@ -75,6 +75,9 @@ var descramble = function() {
 
 $(document).ready(function() {
   descramble.init();
+  $('.loginSelect').on('click',this,function(){
+    $('.errors-wrap').remove();
+  });
 });
 
 function refresh(){
