@@ -2,7 +2,7 @@
   "name": "DescrambleMe",
   "version": "0.0.1",
   "scripts": {
-    "start": "node app.js"
+    "start": "node $relative_path_from_repo_dir/app.js"
   },
   "description":"English Education project for Pearson Hackathon November 2013",
   "dependencies": {
