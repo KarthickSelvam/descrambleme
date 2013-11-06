@@ -3,25 +3,25 @@ var descramble = function() {
     init: function() {
       descramble.searchWords();      
     },
-		searchWords: function() {
-			/*$('#searchWord').on('keyup', function(){
-				$('#displayText').html($(this).val());
-				 $.ajax({
+    searchWords: function() {
+      /*$('#searchWord').on('keyup', function(){
+        $('#displayText').html($(this).val());
+         $.ajax({
               url: "/search",
-							type:'get',
+              type:'get',
               dataType: "jsonp",
               data: {
                  searchText: $(this).val(),
               },
               success: function( data ) {
-							
-								$.each( data.results, function( key, value ) {
-										console.log( value.headword);
-								});
+              
+                $.each( data.results, function( key, value ) {
+                    console.log( value.headword);
+                });
              }
           });
-			});*/
-			var availableTags = [
+      });*/
+      var availableTags = [
       "ActionScript",
       "AppleScript",
       "Asp",
@@ -45,31 +45,31 @@ var descramble = function() {
       "Scala",
       "Scheme"
     ];
-			$( "#searchWord" ).autocomplete({
-				minLength: 2,				
-				source: function( request, response ) {
+      $( "#searchWord" ).autocomplete({
+        minLength: 2,       
+        source: function( request, response ) {
           
-					var dataArray = [];
-					
-					$.ajax({
+          var dataArray = [];
+          
+          $.ajax({
               url: "/search",
-							type:'get',
+              type:'get',
               dataType: "jsonp",
               data: {
                  searchText: request.term,
               },
               success: function( data ) {
-								response($.map(data.results, function (item){
-										return {
-											label: item.headword,
-											value: item.headword,
-										}
-									}));
+                response($.map(data.results, function (item){
+                    return {
+                      label: item.headword,
+                      value: item.headword,
+                    }
+                  }));
              }
           });
-				}
-			});
-		}
+        }
+      });
+    }
   }
 }();
 
@@ -96,16 +96,5 @@ function WordSelect(word){
 }
 
 function audioToggle(){
-  console.log($('#bgmusic').attribute('muted'));
+  var audioElm = document.getElementById('#bgmusic'); audioElm.muted = !audioElm.muted;
 }
-
-
-/* Socket functionality*/
-
-var socket;
-var myUserName;
-socket = io.connect("http://" + location.host);
-var isSocketConnected = false;
-
-
-/* Socket functionality ends*/
