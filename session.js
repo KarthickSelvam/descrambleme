@@ -15,10 +15,10 @@ function SessionHandler (db) {
 
     this.isLoggedInMiddleware = function(req, res, next) {
         var session_id = req.cookies.session;
-        console.log('session id passed to middleware: '+session_id);
+        //console.log('session id passed to middleware: '+session_id);
         sessions.getUsername(session_id, function(err, username) {
             "use strict";
-            console.log('in getUserName: '+username);
+            //console.log('in getUserName: '+username);
             if (!err && username) {
                 req.username = username;
             }
@@ -93,7 +93,7 @@ function SessionHandler (db) {
         errors['email_error'] = "";
 
         if (!USER_RE.test(username)) {
-            errors['username_error'] = "invalid username. try just letters and numbers";
+            errors['username_error'] = "Invalid username. Try just letters and numbers";
             return false;
         }
         // if (!PASS_RE.test(password)) {
@@ -104,12 +104,12 @@ function SessionHandler (db) {
         //     errors['verify_error'] = "password must match";
         //     return false;
         // }
-        if (email != "") {
-            if (!EMAIL_RE.test(email)) {
-                errors['email_error'] = "invalid email address";
-                return false;
-            }
+        //if(email!=""){
+        if (!EMAIL_RE.test(email) || email=="") {
+            errors['email_error'] = "Please provide a proper email address";
+            return false;
         }
+        //}
         return true;
     }
 
