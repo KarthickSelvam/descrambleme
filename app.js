@@ -76,7 +76,15 @@ MongoClient.connect('mongodb://' + connection_string, function(err, db){
 
 	//io.sockets.on('connection',require(__dirname+'/socket',io));
 	require(__dirname+"/socket")(io);
-	server.listen(app.get('port'),process.env.OPENSHIFT_NODEJS_IP||process.env.IP||"localhost", function(){
-	  console.log('Express server listening on port ' + app.get('port'));
-	});
+	if(process.env.OPENSHIFT_NODEJ_IP){
+		server.listen(app.get('port'),process.env.OPENSHIFT_NODEJS_IP||process.env.IP||"localhost", function(){
+		  console.log('Express server listening on port ' + app.get('port'));
+		});
+	}
+	else{
+		server.listen(app.get('port'), function(){
+		  console.log('Express server listening on port ' + app.get('port'));
+		});
+	}
+
 });
