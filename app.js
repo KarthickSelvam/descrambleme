@@ -78,7 +78,7 @@ MongoClient.connect('mongodb://' + connection_string,{auto_reconnect:true}, func
 
 	//io.sockets.on('connection',require(__dirname+'/socket',io));
 	require(__dirname+"/socket")(io);
-	if(process.env.OPENSHIFT_NODEJ_IP){
+	if(process.env.OPENSHIFT_NODEJS_IP){
 		server.listen(app.get('port'),process.env.OPENSHIFT_NODEJS_IP||process.env.IP||"localhost", function(){
 		  console.log('Express server listening on port ' + app.get('port'));
 		});
