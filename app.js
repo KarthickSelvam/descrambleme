@@ -36,12 +36,15 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
   process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
   process.env.OPENSHIFT_APP_NAME;
 }
+else{
+	connection_string = "vigneshpt:1p@ssword1@widmore.mongohq.com:10010/descrambleme"
+}
 
 MongoClient.connect('mongodb://' + connection_string, function(err, db){
 
 	
 	// all environments
-	var port = process.env.OPENSHIFT_NODEJS_PORT || '3000';
+	var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT|| '3000';
 	app.set('port', port);
 	app.set("jsonp callback", true);
 	app.set('views', __dirname + '/views');
@@ -73,7 +76,7 @@ MongoClient.connect('mongodb://' + connection_string, function(err, db){
 
 	//io.sockets.on('connection',require(__dirname+'/socket',io));
 	require(__dirname+"/socket")(io);
-	server.listen(app.get('port'),process.env.OPENSHIFT_NODEJS_IP||"localhost", function(){
+	server.listen(app.get('port'),process.env.OPENSHIFT_NODEJS_IP||process.env.IP||"localhost", function(){
 	  console.log('Express server listening on port ' + app.get('port'));
 	});
 });
