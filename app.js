@@ -28,7 +28,7 @@ fs.readdirSync(__dirname+'/models').forEach(function (file) {
   }
 });
 
-var connection_string = '127.0.0.1:27017/descrambleme';
+var connection_string = 'vigneshpt:simplepassword@widmore.mongohq.com:10010/descrambleme';//'127.0.0.1:27017/descrambleme';
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
   connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
   process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
@@ -40,10 +40,12 @@ else if(process.env.MONGOHQ_USERNAME){
 	connection_string = process.env.MONGOHQ_USERNAME+":"+process.env.MONGOHQ_PASSWORD+"@widmore.mongohq.com:10010/descrambleme"
 }
 
-MongoClient.connect('mongodb://' + connection_string, function(err, db){
+MongoClient.connect('mongodb://' + connection_string,{auto_reconnect:true}, function(err, db){
 
 	
 	// all environments
+	if(err)
+		console.error(err.message);
 	var port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT|| '3000';
 	app.set('port', port);
 	app.set("jsonp callback", true);
