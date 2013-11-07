@@ -36,8 +36,8 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
   process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
   process.env.OPENSHIFT_APP_NAME;
 }
-else{
-	connection_string = process.env.MONGOHQ_USERNAME":"+MONGOHQ_PASSWORD+"@widmore.mongohq.com:10010/descrambleme"
+else if(process.env.MONGOHQ_USERNAME){
+	connection_string = process.env.MONGOHQ_USERNAME+":"+MONGOHQ_PASSWORD+"@widmore.mongohq.com:10010/descrambleme"
 }
 
 MongoClient.connect('mongodb://' + connection_string, function(err, db){
