@@ -28,7 +28,7 @@ fs.readdirSync(__dirname+'/models').forEach(function (file) {
   }
 });
 
-var connection_string = 'vigneshpt:simplepassword@widmore.mongohq.com:10010/descrambleme';//'127.0.0.1:27017/descrambleme';
+var connection_string = '127.0.0.1:27017/descrambleme';
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
   connection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
   process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" +
