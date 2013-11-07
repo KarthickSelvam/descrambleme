@@ -125,9 +125,9 @@ block content
 			img(src='/images/log-out.png')
 	div.playerinfo
 		input(type='hidden',id="username-hidden",value='#{user._id}')
-		p.LevelInfo L0
+		p.LevelInfo L#{user.level.number}
 		a.UserPhoto
-		p.LevelPoints 15000
+		p.LevelPoints #{user.points}
 	#container
 		#bubble	
 	#userAnswer
