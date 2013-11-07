@@ -87,7 +87,10 @@ $(document).ready(function(){
 							type: "POST",
 							data:{word:data.message},
 							success:function(receivedData){
-								window.location.href = "/descramble?word="+receivedData;
+								$('.pears').append('<div class="hide"><form id="fakeForm" method="post" action="/descramble"><input name="word" value="'+receivedData+'"/>"</form></div>');
+								$('.pears').find('#fakeForm').submit();
+								/*var formData="receivedData="+receivedData;
+								window.location.href = "/descramble?word="+receivedData;*/
 							},
 							error:function(err){
 								console.log('error in getting encrypted word');
