@@ -27,7 +27,7 @@ module.exports.controller = function(app,db,sessionHandler){
 		dec += decipher.final('utf8');
 		return dec;
 	}
-	app.get('/descramble',function(req,res){
+	app.post('/descramble',function(req,res){
 
 		if (!req.username) return res.redirect("/");
 		users = db.collection('users');
@@ -35,8 +35,8 @@ module.exports.controller = function(app,db,sessionHandler){
 		        //console.log('found One : '+userDoc);
 		        //validateUserDoc(err, userDoc);
 		        //console.log('going to render 2 player mode: '+JSON.stringify(userDoc));
-		    var keyWord = decrypt(req.query.word);    
-			res.render('descramble/descramble',{keyWord:keyWord,title: "Descramble ME!",user:userDoc});
+		var keyWord = decrypt(req.body.word);    
+		res.render('descramble/descramble',{keyWord:keyWord,title: "Descramble ME!",user:userDoc});
 		});
 	    //res.render('descramble/descramble',{keyWord:keyWord});
 	});
