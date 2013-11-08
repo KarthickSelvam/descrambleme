@@ -24,7 +24,7 @@ module.exports.socket = function(socket,allSockets){
 		if(users[username]===undefined){
 			users[username]= socket.id;
 			clientSockets[socket.id]= username;
-			userNameAvailable(socket.id,username);
+			//userNameAvailable(socket.id,username);
 			userJoined(username);
 			console.log('users: '+JSON.stringify(users));
 			console.log('sockets: '+JSON.stringify(clientSockets));
@@ -88,14 +88,14 @@ module.exports.socket = function(socket,allSockets){
 	    allSockets.emit('userLeft', { "userName": uName });
 	};
 
-	function userNameAvailable(sId, uName) {
-	  setTimeout(function() {
+	// function userNameAvailable(sId, uName) {
+	//   setTimeout(function() {
 	 
-	    console.log('Sending welcome msg to ' + uName + ' at ' + sId);
-	    allSockets.sockets[sId].emit('welcome', { "userName" : uName, "currentUsers": JSON.stringify(Object.keys(users)) });
+	//     console.log('Sending welcome msg to ' + uName + ' at ' + sId);
+	//     allSockets.sockets[sId].emit('welcome', { "userName" : uName, "currentUsers": JSON.stringify(Object.keys(users)) });
 	 
-	  }, 500);
-	}
+	//   }, 500);
+	// }
 	function userNameAlreadyInUse(sId, uName) {
 	  setTimeout(function() {
 	    allSockets.sockets[sId].emit('error', { "userNameInUse" : true });
