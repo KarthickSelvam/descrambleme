@@ -19,14 +19,7 @@ function decrypt(word){
  	}
  	return temp;
 }
-var myCountdown2 = new Countdown({
-	time: 60,
-	width: 200,
-	height: 80,
-	rangeHi: "minute",
-	target:"countdown-timer-div", // <- no comma on last item!
-	onComplete: countdownComplete
-});
+
 
 var originalWord=decrypt(WordValue);
 var scrambledWord = originalWord.shuffle() + "aeiou".shuffle();
@@ -63,8 +56,23 @@ function createElements(str) {
 	}
 
 }
+var PlayerConfirm= function(){
+	var accept = confirm("Start the game");
+	if(accept){
+		$('#defni').removeClass('hide');
+			var myCountdown2 = new Countdown({
+			time: 60,
+			width: 200,
+			height: 80,
+			rangeHi: "minute",
+			target:"countdown-timer-div", // <- no comma on last item!
+			onComplete: countdownComplete
+		});
+	}else{
+		window.location.href="/challenge";
+	}
+}
 $(document).ready(function() {
-
 	var audioElement = document.createElement('audio');
 	audioElement.setAttribute('src', '/audio/Minion_What.mp3');
 
@@ -120,5 +128,7 @@ $(document).ready(function() {
 
 		$('#hint').find('#audioSpan').removeClass('hide');
 	});
+
+	setTimeout(PlayerConfirm,1500);
 
 });
