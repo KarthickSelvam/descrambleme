@@ -12,7 +12,7 @@ String.prototype.shuffle = function() {
 function decrypt(word){
  	var temp=word.split('|');
  	var ranNo=temp[1];
- 	var data=temp[0].split('989');
+ 	var data=temp[0].split('a');
  	temp="";
  	for(var i=1;i<data.length;i++){
  		temp=temp+(String.fromCharCode(data[i]-ranNo));

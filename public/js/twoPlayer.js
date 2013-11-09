@@ -26,7 +26,7 @@ function encrypt(word){
 	var ranNo=Math.floor((Math.random()*100)+1);
 	for(var i=0;i<word.length;i++){
 		temp=word.charCodeAt(i)+ranNo;
-		data=data+"989"+temp;
+		data=data+"a"+temp;
 	}
 	data=data+"|"+ranNo;
 	return data;
