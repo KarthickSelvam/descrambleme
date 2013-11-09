@@ -23,9 +23,11 @@ a{
 display:none;
 }
 #stage_jbeeb_3{
-width:100% !important;
-height:100% !important;
-position:absolute !important;
+}
+#countdown-timer-div{
+    position:absolute;
+    bottom:0;
+    right:0;
 }
 #container_jbeeb_5{
 position:absolute !important;

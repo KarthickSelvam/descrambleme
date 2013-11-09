@@ -33,6 +33,6 @@ block content
   div.word
    div.Images Images : 
    span 
-    -var imgSrc=data.Images.split(',');
-    -each url in imgSrc 
+    //- -var imgSrc=data.Images.split(',');
+    -each url in data.Images 
      img(src=url)

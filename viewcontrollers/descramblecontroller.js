@@ -35,8 +35,16 @@ module.exports.controller = function(app,db,sessionHandler){
 		        //console.log('found One : '+userDoc);
 		        //validateUserDoc(err, userDoc);
 		        //console.log('going to render 2 player mode: '+JSON.stringify(userDoc));
-		var keyWord = decrypt(req.body.word);    
-		res.render('descramble/descramble',{keyWord:keyWord,title: "Descramble ME!",user:userDoc});
+			var keyWord = decrypt(req.body.word);  
+			require('../helpers/descriptionJson').getFullDescription(keyWord,function(data){
+				res.render('descramble/descramble',{title: "Descramble ME!",worddata:data,user:userDoc});
+			},{
+				imageLimit:1,
+				phrases:false,
+				synonyms:true,
+				anagrams:false
+			}); 
+			
 		});
 	    //res.render('descramble/descramble',{keyWord:keyWord});
 	});

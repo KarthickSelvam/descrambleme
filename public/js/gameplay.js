@@ -10,10 +10,11 @@ String.prototype.shuffle = function() {
 	return a.join("");
 }
 var myCountdown2 = new Countdown({
-	time: 30,
+	time: 60,
 	width: 200,
 	height: 80,
-	rangeHi: "minute", // <- no comma on last item!
+	rangeHi: "minute",
+	target:"countdown-timer-div", // <- no comma on last item!
 	onComplete: countdownComplete
 });
 
@@ -76,25 +77,25 @@ $(document).ready(function() {
 
 	var globalResult;
 
-	$.ajax({
-		url: '/descriptionJson?word=' + originalWord,
-		dataType: 'json',
-		success: function(result) {
-			globalResult = result;
-			$("#defni").append(result.Definition);
-			var urls = result.Images.split(',');
-			//audio file
-			var audio = document.createElement('audio');
-			$(audio).attr('src', 'http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text=' + globalResult.KeyWord).attr('controls', 'controls')
-			$("#audioSpan").append(audio);
+	// $.ajax({
+	// 	url: '/api/worddetails?word=' + originalWord,
+	// 	dataType: 'json',
+	// 	success: function(result) {
+	// 		globalResult = result;
+	// 		// $("#defni").append(result.Definition);
+	// 		// var urls = result.Images;
+	// 		// //audio file
+	// 		// var audio = document.createElement('audio');
+	// 		// $(audio).attr('src', 'http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text=' + globalResult.KeyWord).attr('controls', 'controls')
+	// 		// $("#audioSpan").append(audio);
 
-			for (i = 0; i < 1; i++) {
-				var images = document.createElement('img');
-				$(images).addClass('hintImage').attr('src', urls[i])
-				$("#imageSpan").append(images);
-			}
-		}
-	});
+	// 		// for (i = 0; i < 1; i++) {
+	// 		// 	var images = document.createElement('img');
+	// 		// 	$(images).addClass('hintImage').attr('src', urls[i])
+	// 		// 	$("#imageSpan").append(images);
+	// 		// }
+	// 	}
+	// });
 
 	$('#audioHint').click(function() {
 		$('#audiospan').toggle('slow')

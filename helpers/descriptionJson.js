@@ -3,8 +3,17 @@ var parseString = require('xml2js').parseString;
 
 
 
-module.exports.controller = function(app) {
-    app.get('/descriptionJson', function(req, res) {
+module.exports.getFullDescription = function(wordToGet,callback,options) {
+    // app.get('/descriptionJson', function(req, res) {
+
+        /* options :{
+            imageLimit : integer,
+            phrases: boolean,
+            anagrams:boolean,
+            synonyms: boolean
+        }
+        */
+
         /*Variables declaration starts */
         var wordDetails = {};
         var imageList = [];
@@ -22,7 +31,7 @@ module.exports.controller = function(app) {
         Antonyms = "";
         /*Variables ends */
 
-        var inputWord = req.query.word;
+        var inputWord = wordToGet;
 
         /*function definitions */
         var getWordDetails = function(keyWord) {
@@ -51,7 +60,12 @@ module.exports.controller = function(app) {
             });
         }
         var getDKImages = function(keyWord) {
-            url = 'http://api.pearson.com/dk/v1/images?caption=' + keyWord + '&limit=3&apikey=6pUM7idZK2khzpx31xSfUoUapA2wQbzm';
+            var limit=3;
+            if(typeof options !== "undefined"){
+                limit = options.imageLimit;
+            }
+
+            url = 'http://api.pearson.com/dk/v1/images?caption=' + keyWord + '&limit='+limit+'&apikey=6pUM7idZK2khzpx31xSfUoUapA2wQbzm';
             request(url, function(err, response, data) {
 
                 if (!err && response.statusCode == 200) {
@@ -85,6 +99,11 @@ module.exports.controller = function(app) {
         };
         var getPhrases = function(keyWord) {
             url = 'http://stands4.com/services/v2/phrases.php?uid=2167&tokenid=LL870U6UWvQIh9w&phrase=' + keyWord;
+            if(typeof options !== "undefined" && typeof options.phrases !== "undefined"){
+                if(options.phrases==false)
+                    url="";
+            }
+            //url = 'http://stands4.com/services/v2/phrases.php?uid=2167&tokenid=LL870U6UWvQIh9w&phrase=' + keyWord;
             request(url, function(err, response, data) {
                 if (!err && response.statusCode == 200) {
                     parseString(data, function(error, result) {
@@ -102,6 +121,10 @@ module.exports.controller = function(app) {
         };
         var getAnagrams = function(keyWord) {
             url = 'http://anagramica.com/best/:' + keyWord;
+            if(typeof options !== "undefined" && typeof options.anagrams !== "undefined"){
+                if(options.anagrams==false)
+                    url="";
+            }
             request(url, function(err, response, anagramdata) {
                 if (!err && response.statusCode == 200) {
                     var jsonData = JSON.parse(anagramdata);
@@ -113,6 +136,10 @@ module.exports.controller = function(app) {
         };
         var getSynonyms = function(keyWord) {
             url = 'http://stands4.com/services/v2/syno.php?uid=2167&tokenid=LL870U6UWvQIh9w&word=' + keyWord;
+            if(typeof options !== "undefined" && typeof options.synonyms !== "undefined"){
+                if(options.synonyms==false)
+                    url="";
+            }
             request(url, function(err, response, data) {
                 if (!err && response.statusCode == 200) {
                     parseString(data, function(error, parsedJson) {
@@ -126,7 +153,7 @@ module.exports.controller = function(app) {
 
                     });
                 }
-                res.send({
+                callback({//res.send({
                     KeyWord: keyWord,
                     Speech: Speech,
                     Audio: Audio,
@@ -137,10 +164,10 @@ module.exports.controller = function(app) {
                     Antonyms: Antonyms,
                     Anagrams: Anagrams,
                     Images: Images
-                });
+                });//});
             });
         }
 
         getWordDetails(inputWord);
-    });
+    // });
 };

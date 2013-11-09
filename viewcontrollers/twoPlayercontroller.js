@@ -23,6 +23,12 @@ module.exports.controller = function(app,db,sessionHandler){
 		console.log(req.query.searchText);
 		getWordDetails(searchText, res);
 	});
+
+	app.get('/api/worddetails',function(req,res){
+		require('../helpers/descriptionJson').getFullDescription(req.query.word,function(collection){
+			res.send(collection);
+		});
+	});
 };
 function getWordDetails(value, res) {
 	var http = require("http");
