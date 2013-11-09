@@ -4,13 +4,14 @@ socket = io.connect("http://" + location.host);
 var isSocketConnected = false;
 function bindPlayersClick(){
 	$('.user').click(function(){
-		
-		if($("#searchWord").val()){
+		var word=$("#searchWord").val();
+		if(word){
+			word=encrypt($("#searchWord").val());
 			socket.emit('message',{
 				inferSrcUser:true,
 				type:"challenge_request",
 				source: "",
-				message:$("#searchWord").val(),
+				message:word,
 				target:this.id
 			});
 		}
@@ -18,6 +19,17 @@ function bindPlayersClick(){
 			alert("Please select or enter a word","Word not selected");
 		}
 	});
+}
+function encrypt(word){
+	var data="";
+	var temp="";
+	var ranNo=Math.floor((Math.random()*100)+1);
+	for(var i=0;i<word.length;i++){
+		temp=word.charCodeAt(i)+ranNo;
+		data=data+"989"+temp;
+	}
+	data=data+"|"+ranNo;
+	return data;
 }
 
 function updateSocketConnectivityStatus (){
@@ -67,12 +79,6 @@ $(document).ready(function(){
 		bindPlayersClick();
 
 	});
-	function encrypt(text){
-	  var cipher = crypto.createCipher('aes-256-cbc','d6F3Efeq')
-	  var crypted = cipher.update(text,'utf8','hex')
-	  crypted += cipher.final('hex');
-	  return crypted;
-	}
 	socket.on('message',function(data){
 		if(data.target== myUserName){
 			//alert(JSON.stringify(data));
@@ -80,25 +86,11 @@ $(document).ready(function(){
 				case "challenge_request":
 					///show accept decline popup.
 					//assuming accepted
+					console.log(data.message);
 					var accept = confirm(data.source+" has challenged you. Do you accept?")
 					if(accept){
-						$.ajax({
-							url:'/encryptWord',
-							type: "POST",
-							data:{word:data.message},
-							success:function(receivedData){
-								$('.pears').append('<div class="hide"><form id="fakeForm" method="post" action="/descramble"><input name="word" value="'+receivedData+'"/>"</form></div>');
-								$('.pears').find('#fakeForm').submit();
-								/*var formData="receivedData="+receivedData;
-								window.location.href = "/descramble?word="+receivedData;*/
-							},
-							error:function(err){
-								console.log('error in getting encrypted word');
-							}
-
-						})
-						// var encrypted = encrypt(data.message);
-						// window.location.href = "/descramble?word="+encrypted;	
+						$('.pears').append('<div class="hide"><form id="fakeForm" method="post" action="/descramble"><input name="word" value="'+data.message+'"/>"</form></div>');
+						$('.pears').find('#fakeForm').submit();	
 					}
 					break;
 				case "used_hint":

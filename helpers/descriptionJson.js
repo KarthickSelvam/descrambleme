@@ -31,8 +31,19 @@ module.exports.getFullDescription = function(wordToGet,callback,options) {
         Antonyms = "";
         /*Variables ends */
 
-        var inputWord = wordToGet;
+        
 
+        var decrypt=function(word){
+            var temp=word.split('|');
+            var ranNo=temp[1];
+            var data=temp[0].split('989');
+            temp="";
+            for(var i=1;i<data.length;i++){
+                temp=temp+(String.fromCharCode(data[i]-ranNo));
+            }
+            return temp;
+        }
+        var inputWord = decrypt(wordToGet);
         /*function definitions */
         var getWordDetails = function(keyWord) {
             url = 'http://api.pearson.com/v2/dictionaries/entries?headword=' + keyWord + '&apikey=6pUM7idZK2khzpx31xSfUoUapA2wQbzm';
@@ -154,6 +165,7 @@ module.exports.getFullDescription = function(wordToGet,callback,options) {
                     });
                 }
                 callback({//res.send({
+                    EncryptWord:wordToGet,
                     KeyWord: keyWord,
                     Speech: Speech,
                     Audio: Audio,

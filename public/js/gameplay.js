@@ -9,6 +9,16 @@ String.prototype.shuffle = function() {
 	}
 	return a.join("");
 }
+function decrypt(word){
+ 	var temp=word.split('|');
+ 	var ranNo=temp[1];
+ 	var data=temp[0].split('989');
+ 	temp="";
+ 	for(var i=1;i<data.length;i++){
+ 		temp=temp+(String.fromCharCode(data[i]-ranNo));
+ 	}
+ 	return temp;
+}
 var myCountdown2 = new Countdown({
 	time: 60,
 	width: 200,
@@ -18,10 +28,12 @@ var myCountdown2 = new Countdown({
 	onComplete: countdownComplete
 });
 
-
+var originalWord=decrypt(WordValue);
 var scrambledWord = originalWord.shuffle() + "aeiou".shuffle();
 var wordLength = originalWord.length;
 var clickCount = -1;
+
+
 
 function countdownComplete() {
 	alert(" Challenge Lost. Click Ok to Learn the Word !");
