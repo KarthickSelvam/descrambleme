@@ -1,10 +1,8 @@
-.Container{
+body{
 	background: url('/images/mode-bg.png') no-repeat;
-	position:absolute;
-	width: 100%;
-	height: 100%;
-	top:0;
-	background-size: 100%;
+	background-size:100%;
+}
+.Container{
 }
 .first,.second,.third{
 	width:33.3%;

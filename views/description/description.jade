@@ -1,38 +1,39 @@
 extends ../layout
 
 block content
- link(rel='stylesheet', href='/stylesheets/descriptionstyle.css')
- div.backButton
-  a(href="/") [back]
- div.outerwrapper
- div.wrapper  
-  div.word.keyword
-   span #{data.KeyWord}
-   audio(src="http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text="+"#{data.KeyWord}",controls,type="audio/ogg")
-  div.word 
-   div.defn Definition : 
-   span #{data.Definition}
-  div.word
-   div.usage Usage : 
-   span #{data.Usage}
-  div.word
-   div.phrase Phrase : 
-   span #{data.Phrase}
-  div.word
-   div.Syn Synonyms : 
-   span #{data.Synonyms}
-  div.word
-   div.Ant Antonyms : 
-   span #{data.Antonyms}
-  div.word
-   div.Anag Anagrams : 
-   span #{data.Anagrams}
-  div.word
-   div.Parts Parts of speech : 
-   span #{data.Speech}
-  div.word
-   div.Images Images : 
-   span 
-    //- -var imgSrc=data.Images.split(',');
-    -each url in data.Images 
-     img(src=url)
+  body
+    link(rel='stylesheet', href='/stylesheets/descriptionstyle.css')
+    div.backButton
+    a(href="/") [back]
+    div.outerwrapper
+    div.wrapper  
+      div.word.keyword
+        span #{data.KeyWord}
+        audio(src="http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text="+"#{data.KeyWord}",controls,type="audio/ogg")
+      div.word 
+        div.defn Definition : 
+        span #{data.Definition}
+      div.word
+        div.usage Usage : 
+        span #{data.Usage}
+      div.word
+        div.phrase Phrase : 
+        span #{data.Phrase}
+      div.word
+        div.Syn Synonyms : 
+        span #{data.Synonyms}
+      div.word
+        div.Ant Antonyms : 
+        span #{data.Antonyms}
+      div.word
+        div.Anag Anagrams : 
+        span #{data.Anagrams}
+      div.word
+        div.Parts Parts of speech : 
+        span #{data.Speech}
+      div.word
+        div.Images Images : 
+        span 
+        //- -var imgSrc=data.Images.split(',');
+        -each url in data.Images 
+          img(src=url)

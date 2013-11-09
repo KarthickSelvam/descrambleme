@@ -6,33 +6,34 @@ block scripts
 	script(src="/js/countdown.js")
 	script(src="/js/Scramble.js")	
 block content
-	a.log-out(href="/logout") 
-		span
-			img(src='/images/log-out.png')
-	div.playerinfo
-		input(type='hidden',id="username-hidden",value='#{user._id}')
-		p.LevelInfo L#{user.level.number}
-		a.UserPhoto
-		p.LevelPoints #{user.points}
-	#container
-		#bubble	
-	#userAnswer
-	div.Sidebar
-		div.playerselection
-			div.head Definition:
-			div.def#defni.
-				#{worddata.Definition}
-	
-		div.playerselection
-			div.head Hints:
-				#hint					
-					#imageHint.iHint View hint image
-					#imageSpan.hide
-						img.hintImage(src='#{worddata.Images[0]}')
-					#audioHint.aHint Hear the word
-					#audioSpan.hide
-						audio(controls='controls', src='http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text=#{worddata.KeyWord}')
-		div#countdown-timer-div
+	body
+		a.log-out(href="/logout") 
+			span
+				img(src='/images/log-out.png')
+		div.playerinfo
+			input(type='hidden',id="username-hidden",value='#{user._id}')
+			p.LevelInfo L#{user.level.number}
+			a.UserPhoto
+			p.LevelPoints #{user.points}
+		#container
+			#bubble	
+		#userAnswer
+		div.Sidebar
+			div.playerselection
+				div.head Definition:
+				div.def#defni.
+					#{worddata.Definition}
+		
+			div.playerselection
+				div.head Hints:
+					#hint					
+						#imageHint.iHint View hint image
+						#imageSpan.hide
+							img.hintImage(src='#{worddata.Images[0]}')
+						#audioHint.aHint Hear the word
+						#audioSpan.hide
+							audio(controls='controls', src='http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text=#{worddata.KeyWord}')
+			div#countdown-timer-div
 block endScripts
 	script(type='text/javascript')
 		var originalWord="#{worddata.KeyWord}";

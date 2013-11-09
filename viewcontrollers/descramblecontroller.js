@@ -49,15 +49,16 @@ module.exports.controller = function(app,db,sessionHandler){
 	    //res.render('descramble/descramble',{keyWord:keyWord});
 	});
 	app.post('/encryptWord',function(req,res){
+		console.log(req.body.word);
 		res.send(encrypt(req.body.word));
 	});
 };
 
 module.exports.socket = function(socket){
 	
-	socket.on('message',function(data){
-		socket.broadcast.emit('message',data);	
-	});
+	// socket.on('message',function(data){
+	// 	socket.broadcast.emit('message',data);	
+	// });
 
 	
 };
