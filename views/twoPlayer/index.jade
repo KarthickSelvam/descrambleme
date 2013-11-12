@@ -1,7 +1,46 @@
 extends ../layout
 block styles
-	
 block content
+	a(href='/logout')
+		span
+			img(src='/images/log-out.png')
+	div.player-wrap
+		p.level-number L#{user.level.number}
+		a.player-pic
+		p.player-points #{user.points}
+	//h1=title
+	input(type='hidden',id='usernamefield',value='#{user._id}')
+	div.col-md-12
+		div.col-md-9.left-side-wrap
+			div.text-center.input-wrap
+				label Choose a word to challenge:
+				div(id='content')
+					input(type='text',id='searchWord')
+				div(id='displayText')
+			div.word-cloud
+				div.wordcloud-info-text.text-left.col-md-6
+					span
+						h3 
+							-if(random.length==0)
+								|Something went wrong in getting random words
+							-else 
+								| Other Suggestions : #{JSON.stringify(random.length)}
+				div.refresh-button.text-right.col-md-6
+					span 
+						-if(random.length!=0)
+							a(href="javascript:refresh();")[Refresh]
+				div.words.tags
+					ul
+						-for(var i=0; i<random.length;i++){
+						-var tagNo=Math.floor((Math.random()*5)+1);
+						li(class="tag#{tagNo}")
+							a(href="javascript:WordSelect('#{random[i].word}')") #{random[i].word}
+						-}
+		div.col-md-3.online-players-wrap
+			div.header Online players
+			div.playerlist
+
+//block content
 	body
 		a.log-out(href="/logout") 
 			span
