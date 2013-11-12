@@ -40,7 +40,7 @@ else if(process.env.MONGOHQ_USERNAME){
 	connection_string = process.env.MONGOHQ_USERNAME+":"+process.env.MONGOHQ_PASSWORD+"@widmore.mongohq.com:10010/descrambleme"
 }
 
-MongoClient.connect('mongodb://' + connection_string,{auto_reconnect:true}, function(err, db){
+MongoClient.connect('mongodb://' + connection_string,{auto_reconnect:true,socketOptions:{keepAlive:1}}, function(err, db){
 
 	
 	// all environments

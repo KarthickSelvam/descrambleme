@@ -24,10 +24,15 @@ block content
 		div.suggestion
 			div.SuggWord
 				span
-					h3 Other Suggestions :
+					h3 
+						-if(random.length==0)
+							|Something went wrong in getting random words
+						-else 
+							| Other Suggestions : #{JSON.stringify(random.length)}
 			div.SuggRefresh 
 				span 
-					a(href="javascript:refresh();")[Refresh]
+					-if(random.length!=0)
+						a(href="javascript:refresh();")[Refresh]
 			div.tags
 				ul
 					-for(var i=0; i<random.length;i++){
