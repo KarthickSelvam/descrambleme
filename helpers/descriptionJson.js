@@ -43,7 +43,11 @@ module.exports.getFullDescription = function(wordToGet,callback,options) {
             }
             return temp;
         }
-        var inputWord = decrypt(wordToGet);
+        var inputWord = wordToGet;
+        if(typeof options !== "undefined" && typeof options.encrypted !== "undefined"){
+            if(options.encrypted==true)
+                inputWord = decrypt(wordToGet);
+        }
         /*function definitions */
         var getWordDetails = function(keyWord) {
             url = 'http://api.pearson.com/v2/dictionaries/entries?headword=' + keyWord + '&apikey=6pUM7idZK2khzpx31xSfUoUapA2wQbzm';

@@ -28,6 +28,7 @@ module.exports.controller = function(app,db,sessionHandler){
 			require('../helpers/descriptionJson').getFullDescription(keyWord,function(data){
 				res.render('descramble/descramble',{title: "Descramble ME!",worddata:data,user:userDoc});
 			},{
+				encrypted:true,
 				imageLimit:1,
 				phrases:false,
 				synonyms:true,
