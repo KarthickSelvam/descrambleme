@@ -1,6 +1,6 @@
 extends ../layout
 block scripts
-	script(type='text/javascript', src='/socket.io/socket.io.js')
+	
 block content
 	body
 		a.log-out(href="/logout") 
@@ -48,4 +48,5 @@ block content
 				div.playerlist
 		div.socket-status
 block endScripts
+	script(type='text/javascript', src='/socket.io/socket.io.js')
 	script(src="/js/twoPlayer.js")

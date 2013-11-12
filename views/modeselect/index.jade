@@ -1,8 +1,8 @@
 extends ../layout
-block scripts
+block styles
 	link(rel='stylesheet', href='/stylesheets/modeselect.css')
 block content
-	body
+	body.mode-select
 		a.log-out(href="/logout") 
 			span
 				img(src='/images/log-out.png')

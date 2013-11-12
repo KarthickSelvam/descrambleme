@@ -1,8 +1,7 @@
 extends ../layout
 block scripts
   link(href='stylesheets/video-js.css', rel='stylesheet')
-  script(src='/js/video.js')
-  script(src="js/intro.js")
+  
 block content
   body.login-page
     div.left
@@ -36,3 +35,6 @@ block content
         div.errors-wrap
             span #{errors.username_error}
             span #{errors.email_error}
+block endScripts
+  script(src='/js/video.js')
+  script(src="js/intro.js")
