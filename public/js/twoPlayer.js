@@ -2,6 +2,10 @@ var socket;
 var myUserName;
 socket = io.connect("http://" + location.host);
 var isSocketConnected = false;
+var onlineUserTemplate= "<li class='col-md-12 btn btn-default user' id=#username#>"+
+								"<span class='glyphicon glyphicon-user'></span>"+
+								"<span>#username#</span>"+
+							"</li>";
 function bindPlayersClick(){
 	$('.user').click(function(){
 		var word=$("#searchWord").val();
@@ -50,8 +54,11 @@ function handleUserLeft(msg) {
 }
 
 function appendNewUser (uname){
-	$('.playerlist').append("<p id="+uname+" class='user'><b>"+uname+"</b></p>");
-	bindPlayersClick();
+	if($('.playerlist').find('#'+uname).length==0){
+		var onlineUser = onlineUserTemplate.replace(/#username#/g,uname);
+		$('.playerlist').append(onlineUser);
+		bindPlayersClick();
+	}
 }
 
 $(document).ready(function(){
@@ -73,7 +80,7 @@ $(document).ready(function(){
 		var htmlString= "";
 		usernames.forEach(function(username){
 			if(username!=myUserName)
-				htmlString+= "<p id="+username+" class='user'><b>"+username+"</b></p>";
+				htmlString+= onlineUserTemplate.replace(/#username#/g,username);
 		});
 		$('.playerlist').html(htmlString);
 		bindPlayersClick();
