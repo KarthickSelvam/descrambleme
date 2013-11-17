@@ -1,14 +1,22 @@
 extends ../layout
-
+block styles
+  link(rel='stylesheet', href='/stylesheets/descriptionstyle.css')
+  link(rel='stylesheet',href='/js/plugins/flexslider.css')
 block content
   body.container
     div.header.row
       div.reward-wrap
       div.player-details.text-right
     div.crct-word-and-definition.row
-      div.crct-word-wrap.col-md-6
-        span #{data.KeyWord}
-        audio(src="http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text="+"#{data.KeyWord}",controls,type="audio/ogg")
+      div.col-md-6 CORRECT WORD:
+        div.row
+          -var word = data.KeyWord
+          -for(var i=0;i<word.length;i++){
+           span.dotted-border= word[i]
+          -}
+          //span #{data.KeyWord}
+          span#play-word-icon.glyphicon.glyphicon-volume-up
+          //audio(src="http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text="+"#{data.KeyWord}",controls,type="audio/ogg")
       div.definition-wrap.col-md-6
         div
           |DEFINITION:
@@ -28,54 +36,35 @@ block content
             |#{data.Synonyms}
         div.antonyms.row
           div.col-md-4
-            |Antonyms
+            |Antonyms:
           div.col-md-8
             |#{data.Antonyms}
         div.anagrams.row
           div.col-md-4
-            |Anagrams
+            |Anagrams:
           div.col-md-8
             |#{data.Anagrams}
         div.phrases.row
           div.col-md-4
-            |Phrases
+            |Phrases:
           div.col-md-8
             |#{data.Phrases}
       div.image-details-wrap.col-md-6
-        div.image-slider
-  //body
-    link(rel='stylesheet', href='/stylesheets/descriptionstyle.css')
-    div.backButton
-    a(href="/") [back]
-    div.outerwrapper
-    div.wrapper  
-      div.word.keyword
-        span #{data.KeyWord}
-        audio(src="http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text="+"#{data.KeyWord}",controls,type="audio/ogg")
-      div.word 
-        div.defn Definition : 
-        span #{data.Definition}
-      div.word
-        div.usage Usage : 
-        span #{data.Usage}
-      div.word
-        div.phrase Phrase : 
-        span #{data.Phrase}
-      div.word
-        div.Syn Synonyms : 
-        span #{data.Synonyms}
-      div.word
-        div.Ant Antonyms : 
-        span #{data.Antonyms}
-      div.word
-        div.Anag Anagrams : 
-        span #{data.Anagrams}
-      div.word
-        div.Parts Parts of speech : 
-        span #{data.Speech}
-      div.word
-        div.Images Images : 
-        span 
-        //- -var imgSrc=data.Images.split(',');
-        -each url in data.Images 
-          img(src=url)
+        span.font-18 Images:
+        div.imgslider
+          ul.imgslider-direction-nav
+            li
+              a.imgslider-prev
+                span.glyphicon.glyphicon-chevron-left
+            li
+              a.imgslider-next
+                span.glyphicon.glyphicon-chevron-right
+          ul.slides
+            -each url in data.Images 
+              li
+                img(src=url)
+block endScripts
+  script
+      data = !{JSON.stringify(data)};
+  script(src = "js/description.js")  
+  script(src='js/plugins/jquery.flexslider-min.js') 

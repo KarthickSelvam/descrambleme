@@ -1,0 +1,33 @@
+body{
+	color:white;
+}
+.input-wrap{
+	border-top:1px solid white;
+	border-bottom:1px solid white;
+	padding: 15px 0;
+}
+.input-wrap label{
+	margin-right:10px;
+}
+.refresh-cloud{cursor:pointer;}
+.online-players-wrap{
+	background:#272B34;
+	padding:0;
+}
+.word-cloud{margin: 10px 0;}
+.online-text{
+	font-size:20px;
+	font-weight:bold;
+	border-bottom:1px solid white;
+	padding:2px 15px;
+}
+.playerlist{
+	padding:2px 5px;
+}
+.playerlist li{
+	list-style-type:none;
+	text-align:left !important;
+}
+.playerlist li span{
+	padding-right:10px;
+}
