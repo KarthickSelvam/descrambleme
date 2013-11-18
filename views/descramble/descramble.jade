@@ -4,33 +4,35 @@ block styles
 	link(rel='stylesheet', href='/stylesheets/descramblestyle.css')	
 block content
 	body
-		a.log-out(href="/logout") 
-			span
-				img(src='/images/log-out.png')
-		div.playerinfo
-			input(type='hidden',id="username-hidden",value='#{user._id}')
-			p.LevelInfo L#{user.level.number}
-			a.UserPhoto
-			p.LevelPoints #{user.points}
-		#container
-			#bubble	
-		#userAnswer
-		div.Sidebar
-			div.playerselection
-				div.head Definition:
-				div.def#defni.hide.
-					#{worddata.Definition}
-		
-			div.playerselection
-				div.head Hints:
-					#hint					
-						#imageHint.iHint View hint image
-						#imageSpan.hide
-							img.hintImage(src='#{worddata.Images[0]}')
-						#audioHint.aHint Hear the word
-						#audioSpan.hide
-							audio(controls='controls', src='http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text=#{worddata.KeyWord}')
-			div#countdown-timer-div
+		div.default-bg
+		div.container.hidden
+			a.log-out(href="/logout") 
+				span
+					img(src='/images/log-out.png')
+			div.playerinfo
+				input(type='hidden',id="username-hidden",value='#{user._id}')
+				p.LevelInfo L#{user.level.number}
+				a.UserPhoto
+				p.LevelPoints #{user.points}
+			#container
+				#bubble	
+			#userAnswer
+			div.Sidebar
+				div.playerselection
+					div.head Definition:
+					div.def#defni.hide.
+						#{worddata.Definition}
+			
+				div.playerselection
+					div.head Hints:
+						#hint					
+							#imageHint.iHint View hint image
+							#imageSpan.hide
+								img.hintImage(src='#{worddata.Images[0]}')
+							#audioHint.aHint Hear the word
+							#audioSpan.hide
+								audio(controls='controls', src='http://mediaapps.globalenglish.com/audio/tts.php?voice=0&speed=1&text=#{worddata.KeyWord}')
+				div#countdown-timer-div
 block endScripts
 	script(type='text/javascript', src='/socket.io/socket.io.js')
 	script(src="/js/countdown.js")

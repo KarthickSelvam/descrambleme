@@ -2,27 +2,28 @@ extends ../layout
 block styles
 	link(rel='stylesheet', href='/stylesheets/modeselect.css')
 block content
-	body.mode-select
-		a.log-out(href="/logout") 
-			span
-				img(src='/images/log-out.png')
-		if user 
-			div.playerinfo
-				p.LevelInfo L#{user.level.number}
-				a.UserPhoto
-				p.LevelPoints #{user.points}
-		div.backButton
-				a(href="/logout") [back]	
-		div.Container
-			div.heading
-					span.
-						SELECT GAME MODE
-			div.first
-				a()
-					img(src='/images/single.png')
-			div.second
-				a(href="/challenge")
-					img(src='/images/double.png')
-			div.third
-				a()	
-					img(src='/images/multi.png')
+	body
+		div.mode-select.hidden
+			a.log-out(href="/logout") 
+				span
+					img(src='/images/log-out.png')
+			if user 
+				div.playerinfo
+					p.LevelInfo L#{user.level.number}
+					a.UserPhoto
+					p.LevelPoints #{user.points}
+			div.backButton
+					a(href="/logout") [back]	
+			div.Container
+				div.heading
+						span.
+							SELECT GAME MODE
+				div.first
+					a()
+						img(src='/images/single.png')
+				div.second
+					a(href="/challenge")
+						img(src='/images/double.png')
+				div.third
+					a()	
+						img(src='/images/multi.png')

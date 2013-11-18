@@ -1,11 +1,27 @@
-body {
-  font: 14px "Hobo std", Helvetica, Arial, sans-serif;
-  background: url(/images/player_bg.png) no-repeat;
-  margin: 0px;
+.default-bg {
+	font: 14px "Hobo std", Helvetica, Arial, sans-serif;
+	height: 100%;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	margin: 0 auto;
+	z-index: -1;
+	background: url(/images/player_bg.png) no-repeat bottom center;
+	background-size: cover;
 }
-body.login-page{
-	background: url(/images/orange.jpg) no-repeat 100%;
+.login-page{
+	height: 100%;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	margin: 0 auto;
+	z-index: -1;
+	background: url(/images/orange.jpg) no-repeat bottom center;
+	background-size: cover;
 }
+.content-loader{position: fixed;
+left: 50%;
+top: 50%;}
 a{
 	text-decoration: none;
 }

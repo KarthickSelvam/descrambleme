@@ -3,38 +3,39 @@ block styles
   link(href='stylesheets/video-js.css', rel='stylesheet')
   
 block content
-  body.login-page
-    div.left
-      #intro.intro
-        video#example_video_1.video-js.vjs-default-skin.vjs-big-play-centered(controls='controls', preload='auto', width='90%', height='500', poster='/images/minion-home-low-res.png', data-setup='{"example_option":true}')
-          source(src='/assets/DeScramble_Me.mp4', type='video/mp4')
-              | Your browser does not support the video tag.
-        
-        audio#bgmusic(autoplay='autoplay',loop="loop")
-          source(src="/assets/intromusic.mp3")
+  body
+    div.login-page.hidden
+      div.left
+        #intro.intro
+          video#example_video_1.video-js.vjs-default-skin.vjs-big-play-centered(controls='controls', preload='auto', width='90%', height='500', poster='/images/minion-home-low-res.png', data-setup='{"example_option":true}')
+            source(src='/assets/DeScramble_Me.mp4', type='video/mp4')
+                | Your browser does not support the video tag.
+          
+          audio#bgmusic(autoplay='autoplay',loop="loop")
+            source(src="/assets/intromusic.mp3")
 
-      a.audioTog(href="javascript:audioToggle();") 
-        img.volume(src='/images/volume.png')
-    div.right
-      span.logo
-        img(src='/images/logo.png')
-      div.loginSelect
-            a.signin(href="javascript:SignIn();") SignIn 
-            span.white
-              \
-            a.signup(href="javascript:SignUp();")  SignUp
-        div.SignUpForm.hide
-            form#SignUpForm(name='introForm', method='post', action='/signup')
-              input#username.name(type='text', name='username',placeholder='Enter name')
-              input#emailAddress.mail(type='text', name='email',placeholder='Enter mail id')
-              a.click(href='javascript:document.getElementById(\'SignUpForm\').submit();') Enter
-        div.SignInForm.hide    
-            form#SignInForm(name='introForm', method='post', action='/login')
-              input#username.name(type='text', name='username',placeholder='Enter name')
-              a.click(href='javascript:document.getElementById(\'SignInForm\').submit();') Enter
-        div.errors-wrap
-            span #{errors.username_error}
-            span #{errors.email_error}
+        a.audioTog(href="javascript:audioToggle();") 
+          img.volume(src='/images/volume.png')
+      div.right
+        span.logo
+          img(src='/images/logo.png')
+        div.loginSelect
+              a.signin(href="javascript:SignIn();") SignIn 
+              span.white
+                \
+              a.signup(href="javascript:SignUp();")  SignUp
+          div.SignUpForm.hide
+              form#SignUpForm(name='introForm', method='post', action='/signup')
+                input#username.name(type='text', name='username',placeholder='Enter name')
+                input#emailAddress.mail(type='text', name='email',placeholder='Enter mail id')
+                a.click(href='javascript:document.getElementById(\'SignUpForm\').submit();') Enter
+          div.SignInForm.hide    
+              form#SignInForm(name='introForm', method='post', action='/login')
+                input#username.name(type='text', name='username',placeholder='Enter name')
+                a.click(href='javascript:document.getElementById(\'SignInForm\').submit();') Enter
+          div.errors-wrap
+              span #{errors.username_error}
+              span #{errors.email_error}
 block endScripts
   script(src='/js/video.js')
   script(src="js/intro.js")
