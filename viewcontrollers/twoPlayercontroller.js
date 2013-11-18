@@ -32,7 +32,7 @@ module.exports.controller = function(app,db,sessionHandler){
 };
 function getWordDetails(value, res) {
 	
-	var url = 'http://api.pearson.com/v2/dictionaries/ldoce5/entries?search=dd&apikey=BDWmpINA2GBDXVLoJb3NmMbrQEC2gzdI';
+	var url = 'http://api.pearson.com/v2/dictionaries/ldoce5/entries?search='+value+'&apikey=BDWmpINA2GBDXVLoJb3NmMbrQEC2gzdI';
 	request(url,function(error,response,data){
 		if(error)
 			res.jsonp('error in fetching Word Details: '+error.message);			
