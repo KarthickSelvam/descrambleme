@@ -4,7 +4,7 @@ var descramble = function() {
       descramble.searchWords();      
     },
     searchWords: function() {
-      /*$('#searchWord').on('keyup', function(){
+      $('#searchWord').on('keyup', function(){
         $('#displayText').html($(this).val());
          $.ajax({
               url: "/search",
@@ -20,7 +20,7 @@ var descramble = function() {
                 });
              }
           });
-      });*/
+      });
       var availableTags = [
       "ActionScript",
       "AppleScript",
@@ -58,7 +58,7 @@ var descramble = function() {
               data: {
                  searchText: request.term,
               },
-              success: function( data ) {
+              success: function( data ) {				
                 response($.map(data.results, function (item){
                     return {
                       label: item.headword,

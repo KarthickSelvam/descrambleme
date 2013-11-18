@@ -40,7 +40,7 @@ else if(process.env.MONGOHQ_USERNAME){
 	connection_string = process.env.MONGOHQ_USERNAME+":"+process.env.MONGOHQ_PASSWORD+"@widmore.mongohq.com:10010/descrambleme"
 }
 
-MongoClient.connect('mongodb://' + connection_string,{auto_reconnect:true,socketOptions:{keepAlive:1}}, function(err, db){
+MongoClient.connect('mongodb://' + connection_string,{auto_reconnect:true,socketOptions:{connectTimeoutMS:3600000,keepAlive:3600000,socketTimeoutMS:3600000}}, function(err, db){
 
 	
 	// all environments
@@ -56,7 +56,7 @@ MongoClient.connect('mongodb://' + connection_string,{auto_reconnect:true,socket
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.cookieParser('your secret here'));
-	app.use(express.session());
+	app.use(express.cookieSession());
 
 	var sessionHandler = new SessionHandler(db);
 	app.use(sessionHandler.isLoggedInMiddleware);
