@@ -87,7 +87,8 @@ $(document).ready(function() {
 			$('#userAnswer').find('#blank' + clickCount + ' h1').html(clickedLetter);
 			if (clickCount + 1 == wordLength) {
 				alert('Congrats ! You have Passed the Challenge . Click ok! ');
-				document.location = "/description?word=" + originalWord;
+				document.location.replace( "/description?word=" + originalWord);
+				$('body').empty();
 			}
 		} else {
 			clickCount--;
