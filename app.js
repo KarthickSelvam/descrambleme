@@ -36,8 +36,8 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
   process.env.OPENSHIFT_MONGODB_DB_PORT + '/' +
   process.env.OPENSHIFT_APP_NAME;
 }
-else if(process.env.MONGOHQ_USERNAME){
-	connection_string = process.env.MONGOHQ_USERNAME+":"+process.env.MONGOHQ_PASSWORD+"@widmore.mongohq.com:10010/descrambleme"
+else if(process.env.MONGOCLOUDCONNECTIONSTR){
+	connection_string = process.env.MONGOCLOUDCONNECTIONSTR;
 }
 
 MongoClient.connect('mongodb://' + connection_string,{auto_reconnect:true,socketOptions:{connectTimeoutMS:3600000,keepAlive:3600000,socketTimeoutMS:3600000}}, function(err, db){
