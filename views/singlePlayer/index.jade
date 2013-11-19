@@ -1,0 +1,21 @@
+extends ../layout
+block styles
+	link(rel='stylesheet',href="stylesheets/singlePlayer.css")
+block content
+	body.container
+		div.header.row
+			div.player-wrap.col-md-6
+				span.level-number L#{user.level.number}
+				span.player-pic
+				span.player-points #{user.points}
+			a(href='/logout').col-md-6.text-right
+				span
+					img(src='/images/log-out.png')
+		//h1=title
+		input(type='hidden',id='usernamefield',value='#{user._id}')
+		div.row
+			div.SinglePlay
+				form.submitform(method="POST", action="/descramble")
+					input(type='hidden',name="word", value="#{random}")
+					input(type='submit', id='singlePlay', class = 'btn btn-default',value=' Learn By Playing with PC')
+
