@@ -15,7 +15,5 @@ block content
 		input(type='hidden',id='usernamefield',value='#{user._id}')
 		div.row
 			div.SinglePlay
-				form.submitform(method="POST", action="/descramble")
-					input(type='hidden',name="word", value="#{random}")
-					input(type='submit', id='singlePlay', class = 'btn btn-default',value=' Learn By Playing with PC')
+				a(id='singlePlay', class = 'btn btn-default',href="/descramble/random") Learn By Playing with PC
 
