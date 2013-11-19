@@ -11,12 +11,9 @@ module.exports.controller = function(app,db,sessionHandler){
             RandomWord(function(error,data){
             	if(!error){
             		require('../helpers/twoWayEncryption').getTwoWayEncryption("encrypt",data[0].word,function(encryptedWord){
-            			
-					res.render('singlePlayer/index',{title: "Single Player Mode - Descramble Me!",random:encryptedWord,user:userDoc});
+            				res.render('singlePlayer/index',{title: "Single Player Mode - Descramble Me!",random:encryptedWord,user:userDoc});
 					}); }
-     //        		console.log(" data with i "+data[0].word);
-					// res.render('singlePlayer/index',{title: "Single Player Mode - Descramble Me!",random:"sample",user:userDoc});}
-				else
+     				else
 					res.render('singlePlayer/index',{title: "Single Player Mode - Descramble Me!",random:[],user:userDoc});
 			});
         });
