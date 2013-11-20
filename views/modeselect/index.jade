@@ -2,7 +2,8 @@ extends ../layout
 block styles
 	link(rel='stylesheet', href='/stylesheets/modeselect.css')
 block content
-	body.mode-select.hidden
+	body
+		div.mode-select.hidden
 		div.hidden
 			a.log-out(href="/logout") 
 				span
