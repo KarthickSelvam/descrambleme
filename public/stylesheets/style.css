@@ -1,11 +1,27 @@
-body {
-  font: 14px "Hobo std", Helvetica, Arial, sans-serif;
-  background: url(/images/player_bg.png) no-repeat;
-  margin: 0px;
+.default-bg {
+	font: 14px "Hobo std", Helvetica, Arial, sans-serif;
+	height: 100%;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	margin: 0 auto;
+	z-index: -1;
+	background: url(/images/player_bg.png) no-repeat bottom center;
+	background-size: cover;
 }
-body.login-page{
-	background: url(/images/orange.jpg) no-repeat 100%;
+.login-page{
+	height: 100%;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	margin: 0 auto;
+	z-index: -1;
+	background: url(/images/orange.jpg) no-repeat bottom center;
+	background-size: cover;
 }
+.content-loader{position: fixed;
+left: 50%;
+top: 50%;}
 a{
 	text-decoration: none;
 }
@@ -209,7 +225,39 @@ font-size:15px;
 margin-top:10px;
 }
 
-/*bootstrapped styles*/
+/*bootstrapped styles start*/
 .header{
 	min-height:60px;
 }
+
+/*dialog popup styles -- start*/
+.overlay{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	opacity: 0.8;
+	background: #000;
+	z-index: 50;
+}
+.dialog-wrapper{
+	position: fixed;
+	top: 35%;
+	left: 37.5%;
+	width: 25%;
+	background: #fff;
+	color: #000;
+	z-index: 51;
+	border-radius: 5px;
+	text-align: center;
+	padding: 10px;
+}
+.dialog-button{
+	margin: 0 15px;
+}
+.dialog-buttons{
+
+}
+.dialog-message{
+	margin: 10px 0 20px 0;
+}
+/*dialog popup styles -- end*/

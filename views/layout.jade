@@ -9,6 +9,9 @@ html
 		block styles
 	
 	block content
+	div.content-loader.show
+		img(src='/images/ajax-loader.gif')
+
 	block foot
 		div.pears
 			a.al
@@ -18,5 +21,13 @@ html
 	script(src="/js/jquery-ui.js")
 	script(src="/js/bootstrap.min.js")
 	script(src="/js/Descramble.js")
+	script
+		$(window).load(function(){
+			//alert('loaded');
+			//console.log($('.content-loader').removeClass('show').addClass('hidden'));
+			$('body > div.hidden').removeClass('hidden').addClass('show');
+			$('.content-loader').removeClass('show').addClass('hidden');
+			
+		});
 	block endScripts
 		
