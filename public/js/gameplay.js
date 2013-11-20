@@ -29,8 +29,13 @@ var clickCount = -1;
 
 
 function countdownComplete() {
-	alert(" Challenge Lost. Click Ok to Learn the Word !");
-	document.location = "/description?word=" + originalWord;
+	showDialog({
+		confirmText:"Ok",
+		message:"Challenge Lost. Click Ok to learn the word",
+		onConfirm:function(){
+			document.location = "/description?word=" + originalWord;
+		}
+	});
 }
 
 function createElements(str) {
@@ -57,20 +62,26 @@ function createElements(str) {
 
 }
 var PlayerConfirm= function(){
-	var accept = confirm("Start the game");
-	if(accept){
-		$('#defni').removeClass('hide');
-			var myCountdown2 = new Countdown({
-			time: 60,
-			width: 200,
-			height: 80,
-			rangeHi: "minute",
-			target:"countdown-timer-div", // <- no comma on last item!
-			onComplete: countdownComplete
-		});
-	}else{
-		window.location.href="/challenge";
-	}
+	showDialog({
+		confirmText:"Ok",
+		rejectText:"Cancel",
+		message:'Start the game',
+		onConfirm:function(){
+			$('#defni').removeClass('hide');
+				var myCountdown2 = new Countdown({
+				time: 60,
+				width: 200,
+				height: 80,
+				rangeHi: "minute",
+				target:"countdown-timer-div", // <- no comma on last item!
+				onComplete: countdownComplete
+			});
+		},
+		onReject:function(){
+			window.location.href="/challenge";
+		}
+	});
+
 }
 $(document).ready(function() {
 	var audioElement = document.createElement('audio');
@@ -86,8 +97,13 @@ $(document).ready(function() {
 
 			$('#userAnswer').find('#blank' + clickCount + ' h1').html(clickedLetter);
 			if (clickCount + 1 == wordLength) {
-				alert('Congrats ! You have Passed the Challenge . Click ok! ');
-				document.location = "/description?word=" + originalWord;
+				showDialog({
+					confirmText:"Ok",
+					message:'Congrats ! You have Passed the Challenge . Click ok! ',
+					onConfirm:function(){
+						document.location = "/description?word=" + originalWord;
+					}
+				});
 			}
 		} else {
 			clickCount--;

@@ -20,7 +20,10 @@ function bindPlayersClick(){
 			});
 		}
 		else{
-			alert("Please select or enter a word","Word not selected");
+			showDialog({
+				confirmText:"Ok",
+				message:"Please select or enter a word"
+			});
 		}
 	});
 }
@@ -94,22 +97,39 @@ $(document).ready(function(){
 					///show accept decline popup.
 					//assuming accepted
 					console.log(data.message);
-					var accept = confirm(data.source+" has challenged you. Do you accept?")
-					if(accept){
-						$('.pears').append('<div class="hide"><form id="fakeForm" method="post" action="/descramble"><input name="word" value="'+data.message+'"/>"</form></div>');
-						$('.pears').find('#fakeForm').submit();	
-					}
+					showDialog({
+						confirmText:"Accept",
+						rejectText:"Decline",
+						message:data.source+" has invited you for a challenge. Do you accept?",
+						showPic:true,
+						picUrl:"/images/unknown_icon.png",
+						onConfirm:function(){
+							$('.pears').append('<div class="hide"><form id="fakeForm" method="post" action="/descramble"><input name="word" value="'+data.message+'"/>"</form></div>');
+							$('.pears').find('#fakeForm').submit();	
+						},
+						onReject: function(){}
+
+					});
 					break;
 				case "used_hint":
 					//
-					alert(data.source+" has used a hint.");
+					showDialog({
+						confirmText:"Ok",
+						message:data.source+" has used a hint."
+					});
 					break;
 				case "victory":
 				//victory or defeat
-					alert(data.source+" won your challenge").
+					showDialog({
+						confirmText:"Ok",
+						message:data.source+" won your challenge."
+					});
 					break;
 				case "defeat":
-					alert(data.source+" lost your challenge. Great!");
+					showDialog({
+						confirmText:"Collect",
+						message:data.source+" lost your challenge. You earned 10 points."
+					});
 
 			}
 		}

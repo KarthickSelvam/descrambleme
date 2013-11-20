@@ -1,0 +1,64 @@
+div.overlay.hidden
+div.dialog-wrapper.hidden
+	div.dialog-pic-wrap#dialog-pic-wrap
+	div.dialog-message#dialog-message
+	div.dialog-buttons
+		button(type='button').dialog-button.btn.btn-success#confirm-btn
+		button(type='button').dialog-button.btn.btn-danger#reject-btn
+script.
+	/*
+	here are the options that need to passed to this function
+	{
+		confirmText: string [mandatory],
+		rejectText: string[optional],
+		showPic: boolean [optional],
+		picUrl: string [optional] (should pass value if showPic is true),
+		message: string [mandatory],
+		onConfirm: function [optional] (handling this function is recommended, instead of leaving unhandled),
+		onReject: function [optional]
+	}
+	*/
+	var showDialog= function(options){
+		var confirmText = "Yes";
+		var rejectText = "No";
+		var showPic = false;
+		var picUrl = "";
+		var message = "";
+		if(typeof options != "undefined"){
+			confirmText=options.confirmText;
+			rejectText = options.rejectText;
+			showPic = options.showPic;
+			if(showPic == true){
+				picUrl = options.picUrl;
+			}
+			message = options.message;
+		}
+		if(showPic==true){
+			$('#dialog-pic-wrap').html("<img class='dialog-pic img-circle' src='"+picUrl+"' />");
+		}
+		$('#dialog-message').html("<span>"+message+"</span>");
+		$('#confirm-btn').text(confirmText);
+		$('#reject-btn').text(rejectText);
+		//show the dialog
+		$('.overlay, .dialog-wrapper').removeClass('hidden').addClass('show');
+		//if second button is not specified in options, then show only one button
+		//this type will be used for simple alerts.
+		if(typeof rejectText == "undefined" || rejectText == ""){
+			$('#reject-btn').addClass('hidden');
+		}
+		else if($('#reject-btn').hasClass('hidden')){
+			$('#reject-btn').removeClass('hidden');
+		}
+		$('#confirm-btn, #reject-btn').unbind('click');
+		//hide the dialog on click of any of the two buttons
+		$('#confirm-btn, #reject-btn').click(function(){
+			$('.overlay, .dialog-wrapper').removeClass('show').addClass('hidden');
+			if(this.id=="confirm-btn" && options.onConfirm){
+				options.onConfirm();
+			}
+			else if(this.id=="reject-btn" && options.onReject){
+				options.onReject();
+			}
+		});
+		
+	}

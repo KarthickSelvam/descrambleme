@@ -225,7 +225,39 @@ font-size:15px;
 margin-top:10px;
 }
 
-/*bootstrapped styles*/
+/*bootstrapped styles start*/
 .header{
 	min-height:60px;
 }
+
+/*dialog popup styles -- start*/
+.overlay{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	opacity: 0.8;
+	background: #000;
+	z-index: 50;
+}
+.dialog-wrapper{
+	position: fixed;
+	top: 35%;
+	left: 37.5%;
+	width: 25%;
+	background: #fff;
+	color: #000;
+	z-index: 51;
+	border-radius: 5px;
+	text-align: center;
+	padding: 10px;
+}
+.dialog-button{
+	margin: 0 15px;
+}
+.dialog-buttons{
+
+}
+.dialog-message{
+	margin: 10px 0 20px 0;
+}
+/*dialog popup styles -- end*/
