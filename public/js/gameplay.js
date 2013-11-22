@@ -102,6 +102,9 @@ $(document).ready(function() {
 					message:'Congrats ! You have Passed the Challenge . Click ok! ',
 					onConfirm:function(){
 						document.location = "/description?word=" + originalWord;
+						$('body > div.show').removeClass('show').addClass('hidden');
+						$('.content-loader').removeClass('hidden').addClass('show');
+						document.location.replace( "/description?word=" + originalWord);
 					}
 				});
 			}
